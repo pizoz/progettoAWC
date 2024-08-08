@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomePage</title>
-</head>
-<body>
-    
-</body>
-</html>
+<script>
+  //Reset del sito, cancella tutti gli utenti registrati e il login
+  localStorage.clear();
+  window.location.href = ".\\Homepage\\homepage.html";
+  localStorage.setItem('logged', 'false');
+  localStorage.setItem('RegisteredUsers', []);
+</script>

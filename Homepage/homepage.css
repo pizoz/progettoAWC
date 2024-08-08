@@ -1,0 +1,12 @@
+body {
+    background-color: rgb(255, 244, 229);
+};
+#logo {
+    display: flex;
+};
+#search {
+    display: flex;
+};
+#searchbutton {
+    color: black; border: 1px solid black;color: black; border: 1px solid black;
+};

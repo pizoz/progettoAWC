@@ -1,0 +1,41 @@
+    Progettazione sito ricette:
+
+    1. creazione account e login
+    2. gestione del proprio profilo (modifica dati ed eliminazione)
+        + visualizzazione e gestione delle proprie recensioni
+        + ricettario (creato vuoto alla creazione dell'account
+            è una serie di ricette "salvate")
+    3. ricerca di ricette (uso ricerca con parole 
+        ma anche suggerimenti random appena aperto sito)
+    4. una volta selezionata una ricetta deve esistere una pagina
+        con tutte le informazioni relative alla ricetta (ingredienti)
+
+    
+    API:
+
+        Tutti i valori sono restituiti in formato JSON:
+            valori principali:
+            idMeal -> id della ricetta
+            strMeal -> nome della ricetta
+            strInstructions -> descrizione della ricetta
+            strMealThumb -> immagine della ricetta
+            strYoutube -> link ad un tutorial strYoutube
+            strIngredientk(da 1 a 20) -> ingredienti, da 1 a 20. 
+                    se strIngrendientk == "" -> no more ingredients
+            strMeasure -> misura del k-simo ingrediente
+        ENDPOINTS:
+        Ricerca con nome:
+        www.themealdb.com/api/json/v1/1/search.php?s=nome
+        Ricerca di una singola ricetta a caso
+        www.themealdb.com/api/json/v1/1/random.php
+        Filtra le ricette per area
+        www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
+
+    IMPLEMENTAZIONE:
+        Array di utenti con tutte le informazioni (Nome, cognome, data di nascita, username(univoco), password)
+        Per risparmiare spazio in localstorage nessuna ricetta ha recensioni. Nel momento in cui si vuole effettuare una recensione, cerco se esiste
+        l'array relativo a quella ricetta. Se lo trovo aggiungo una recensione, altrimenti lo creo e la aggiungo
+        Recensioni in JSON (?)
+            campo username, campo valutazione, Campo descrizione
+
+    
