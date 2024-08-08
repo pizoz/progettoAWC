@@ -23,7 +23,8 @@
             strIngredientk(da 1 a 20) -> ingredienti, da 1 a 20. 
                     se strIngrendientk == "" -> no more ingredients
             strMeasure -> misura del k-simo ingrediente
-        ENDPOINTS:
+            
+    ENDPOINTS:
         Ricerca con nome:
         www.themealdb.com/api/json/v1/1/search.php?s=nome
         Ricerca di una singola ricetta a caso

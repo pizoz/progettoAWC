@@ -1,12 +1,37 @@
 body {
     background-color: rgb(255, 244, 229);
-};
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
 #logo {
     display: flex;
-};
+}
 #search {
     display: flex;
-};
-#searchbutton {
+}
+#searchbar {
+    width: 45%;
+}
+#searchbutton{
     color: black; border: 1px solid black;color: black; border: 1px solid black;
-};
+    
+}
+#searchbutton:hover{
+    background-color: rgb(255, 250, 240);
+    color: rgb(255, 244, 229);
+}
+#login,#profilo {
+    font-size: large
+}
+.col-4 {
+    background-color: lightblue;
+    text-align: center;
+}
+.col {
+    background-color: lightblue;
+    text-align: center;
+}
+h3 {
+    font-weight: bolder;
+}
