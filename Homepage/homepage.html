@@ -20,23 +20,55 @@
         <script src="homepage.js"></script>
     </head>
 
-    <body>
+    <body onload=crea_carosello()>
         <header>
             <div class="container">
-                <div class="row">
-
-                    <nav class="navbar nav-underline navbar-dark">
-                    
-                        <div class="col-4">
-                            <a href="homepage.html" class="navbar-brand" >
-                                <img src="..\img/logo_firma.png" alt="logo"  height="40" />
+                <div class="row" id="navbar">
+                    <nav class="navbar navbar-expand-lg">
+                        <div class="col-4 col-lg-4">
+                            <a href="homepage.html" class="navbar-brand">
+                                <img src="..\img/logo_firma.png" alt="logo" height="40" id="logo"/>
                             </a>
                         </div>
+                        <div class="col-4 col-lg-4">
+                            <form class="d-flex">
+                                <input
+                                    class="form-control me-2"
+                                    type="search"
+                                    placeholder="Cosa vuoi mangiare oggi?"
+                                    aria-label="Search"
+                                />
+                                <button class="btn btn-outline-success" type="submit" id="searchbutton">
+                                    Cerca
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-4 text-end d-lg-none">
+                            <button
+                                class="navbar-toggler"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#navbarNav"
+                                aria-controls="navbarNav"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation"
+                            >
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ms-auto ">
+                                <li class="nav-item align-content-end">
+                                    <a href="login.html" class="nav-link" id="login">Login</a>
+                                </li>
+                                <li class="nav-item align-content-end">
+                                    <a href="signup.html" class="nav-link" id="profilo">Registrati</a>
+                                </li>
+                            </ul>
+                        </div>
                         
-                        <div class="col-4 text-end">
-                            <a href="login.html" class="nav-link d-inline m-2" id="login">Login</a>
-                            <a href="signup.html" class="nav-link d-inline" id="profilo">Registrati</a>
-                            <script>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
                                 // Check if user is logged in and change the profile link and text accordingly
                                 var logged = JSON.parse(localStorage.getItem("logged"));
                                 var profileLink = document.getElementById("profilo");
@@ -48,11 +80,23 @@
                                     profileLink.innerText = "Registrati";
                                     profileLink.href = "signup.html";
                                 }
-                            </script>
-                        </div>
-                    
+                            });
+                        </script>
+                        <script>
+                            // Check if user is logged in and change the profile link and text accordingly
+                            var logged = JSON.parse(localStorage.getItem("logged"));
+                            var profileLink = document.getElementById("profilo");
+                            console.log(logged);
+                            if (logged) {
+                                profileLink.innerText = "Profilo";
+                                profileLink.href = "profilo.html";
+                            } else {
+                                profileLink.innerText = "Registrati";
+                                profileLink.href = "signup.html";
+                            }
+                        </script>
                     </nav>
-                </div>              
+                </div>
             </div>
         </header>
         <main>
@@ -61,42 +105,46 @@
                     <div class="col-3">
                     </div>
                     <div class="col-6" id="searchbar">
-                        <form class="d-flex">
-                            <input
-                                class="form-control me-2"
-                                type="search"
-                                placeholder="Cosa vuoi mangiare oggi?"
-                                aria-label="Search"
-                            />
-                            <button class="btn btn-outline-success" type="submit" id="searchbutton">
-                                Cerca
-                            </button>
-                        </form>
+                        
                     </div>
                     <div class="col-3" >
                     </div>
                 </div>
             </div>
             <div class="container">
-                 <div class="row">
-                     <div class="col-1">
+                <div class="row">
+                    <div class="col-1">
                          
                     </div>
+                
                     <div class="col">
                             <h3>Non sai che scegliere? Lasciati ispirare</h3>
                     </div>
                     <div class="col-1">
                         
                     </div>
-                 </div>
-                 <div class="row">
-                    <!-- CAROSELLO QUI CON LE 10 RICETTE RANDOM-->
-                 </div>
-                 
-            </div>
+                </div>
+                <div class="row">
+                    <div id="carosello" class="carousel slide" data-bs-ride="carousel">
+
+                        <div class="carousel-inner" role="listbox" id="valori">
+                            
+                        </div>
+                    </div>
+                </div>
+                
         </main>
         <footer>
-            <!-- place footer here -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p>
+                            <a href="homepage.html">Home</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a>
+                        </p>
+                        <p>&copy; 2024 - All rights reserved</p>
+                    </div>
+                </div>
+            </div>
         </footer>
         <!-- Bootstrap JavaScript Libraries -->
         <script
@@ -112,7 +160,3 @@
         ></script>
     </body>
 </html>
-<!-- 
-    codice per cambiare profilo in registrati in base al login o meno
-    
--->

@@ -1,0 +1,79 @@
+body {
+    background-color: rgb(255, 244, 229);
+    font-family: "Nunito Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+#logo {
+    width: 80%;
+    height: auto;
+}
+#search {
+    display: flex;
+}
+#searchbar {
+    width: 45%;
+}
+#searchbutton{
+    color: black; border: 1px solid black;color: black; border: 1px solid black;
+    
+}
+#searchbutton:hover{
+    background-color: rgb(65, 44, 3);
+    color: rgb(255, 244, 229);
+}
+
+#login,#profilo {
+    font-size: large
+}
+.col-4 {
+    /* background-color: lightblue; */
+    text-align: center;
+}
+.col {
+    /* background-color: lightblue; */
+    text-align: center;
+}
+h5, h3,h2 {
+    font-weight: bolder;
+}
+.col-12 img {
+    width: auto;
+    height: 60%;
+    /* make it centered */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid rgb(65, 44, 3);
+}
+#navbar {
+    background-color: rgb(220, 215, 200);
+}
+.bg-custom-1 {
+    background-color: rgb(250, 245, 235); /* Set the background color for the cards */
+    border: 1px solid rgb(65, 44, 3);
+    margin: 1vh;
+}
+.btn {
+    background-color: rgb(240, 235, 220);
+    color: black;
+    border-color: black;
+    align-self: flex-start; /* Align the button to the start */
+}
+#title {
+    margin: 2vh;
+    background-color: rgb(250, 245, 235);
+}
+#img {
+    /* rendilo grande come l'immagine all'interno */
+    height: fit-content;
+    margin: 2vh;
+}
+li {
+    list-style-type: none;
+}
+#ingredients,#instructions{
+    padding-top: 1vh;
+    border: 1px solid rgb(65, 44, 3);
+    margin: 2vh;
+}

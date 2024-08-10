@@ -29,6 +29,8 @@
         www.themealdb.com/api/json/v1/1/search.php?s=nome
         Ricerca di una singola ricetta a caso
         www.themealdb.com/api/json/v1/1/random.php
+        Ricerca per id
+        www.themealdb.com/api/json/v1/1/lookup.php?i=id
         Filtra le ricette per area
         www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
 
