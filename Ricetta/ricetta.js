@@ -1,7 +1,6 @@
 async function getRicetta() {
-    localStorage.setItem("id", window.location.href.split("id=")[1]);
-    console.log(localStorage.getItem("id"));
-    let id = localStorage.getItem("id");
+
+    let id = window.location.href.split("id=")[1];
     let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+id;
     let response = await fetch(url);
     let data = await response.json();
@@ -16,6 +15,7 @@ async function getRicetta() {
     //Create an img element and put the image inside it
     let image = document.createElement("img");
     image.src = meal["strMealThumb"];
+    image.id = "copertina";
     img.appendChild(image);
     let ingredients = document.getElementById("ingredients");
     //Create an h3 element and put text inside it
@@ -44,5 +44,24 @@ async function getRicetta() {
     let p = document.createElement("p");
     p.innerText = meal["strInstructions"];
     instructions.appendChild(p);
+    //Create a youtube video preview with the link found in the API
+    let video = document.getElementById("video");
+    video.style.alignContent = "center";
+    let h3_3 = document.createElement("h3");
+    h3_3.innerText = "Tutorial";
+    h3_3.style.textAlign = "center";
+    h3_3.classList.add("m-2");
+    video.appendChild(h3_3);
+    let iframe = document.createElement("iframe");
+    //i want the video preview to be centered, i want it height and width to be the same ratio as the video and relative to the screen
+    iframe.style.width = "560px";
+    iframe.style.height = "315px";
+    iframe.style.alignContent = "center";
+    iframe.style.margin = "auto";
+    iframe.style.display = "block";
+    iframe.classList.add("mb-5");
+    iframe.src = meal["strYoutube"].replace("watch?v=", "embed/");
+    video.appendChild(iframe);
+
 
 }

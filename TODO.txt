@@ -9,11 +9,13 @@
         ma anche suggerimenti random appena aperto sito)
     4. una volta selezionata una ricetta deve esistere una pagina
         con tutte le informazioni relative alla ricetta (ingredienti)
+        + recensioni
 
     
     API:
 
-        Tutti i valori sono restituiti in formato JSON:
+        Restiusce un array meals, con valori in JSON
+
             valori principali:
             idMeal -> id della ricetta
             strMeal -> nome della ricetta
@@ -35,10 +37,41 @@
         www.themealdb.com/api/json/v1/1/filter.php?a=Canadian
 
     IMPLEMENTAZIONE:
-        Array di utenti con tutte le informazioni (Nome, cognome, data di nascita, username(univoco), password)
-        Per risparmiare spazio in localstorage nessuna ricetta ha recensioni. Nel momento in cui si vuole effettuare una recensione, cerco se esiste
-        l'array relativo a quella ricetta. Se lo trovo aggiungo una recensione, altrimenti lo creo e la aggiungo
-        Recensioni in JSON (?)
+        Array di utenti (in JSON) con tutte le informazioni (Nome, cognome, data di nascita, username(univoco), password)
+        Array di recensioni contenenti username e id ricetta cosi da poterle trovare
+        sia tramite utente che tramite ricetta
             campo username, campo valutazione, Campo descrizione
+    
+    Recensioni -> array contenente frammenti JSON
+    {
+        idRicetta:
+        username:
+        titolo:
+        valutazione:
+        descrizione:
+    }
+
+    utenti -> array contenente frammenti JSON
+
+    {
+        username:
+        password:
+        nome:
+        cognome:
+        birthdate:
+    }
+    dell'utente loggato in teoria mi basta sono sapere username
+
+    COME USARE localStorage
+    
+    let RegisteredUsers = localStorage.getItem("RegisteredUsers");
+    console.log(RegisteredUsers);
+    RegisteredUsers = JSON.parse(RegisteredUsers);
+    RegisteredUsers["marco"] = {
+        "password": "ciao",
+        "email": "marco@test.it"
+    };
+    localStorage.setItem("RegisteredUsers", JSON.stringify(RegisteredUsers));
+    console.log(localStorage.getItem("RegisteredUsers"));
 
     

@@ -3,6 +3,7 @@ body {
     font-family: "Nunito Sans", sans-serif;
     margin: 0;
     padding: 0;
+    color: rgb(65, 44, 3);
 }
 #logo {
     width: 80%;
@@ -47,6 +48,7 @@ h5, h3 {
     margin-left: 5%;
     align-self: auto;
     border: 2px solid rgb(65, 44, 3);
+    border-radius: 1vh;
 }
 .carousel-inner {
     height: fit-content;
@@ -60,111 +62,29 @@ h5, h3 {
     height: auto;
 }
 
-#carosello { /* Assicura che il contenitore abbia un'altezza */
-    overflow: hidden; /* Nasconde le parti fuori dal contenitore */
-    position: relative; /* Necessario per il posizionamento assoluto degli elementi */
-}
-.d-flex a {
-    width: 100%;
-    height: auto;
-}
 .btn {
     background-color: rgb(240, 235, 220);
-    color: black;
-    border-color: black;
+    color: rgb(65, 44, 3);
+    border-color: rgb(65, 44, 3);
     align-self: flex-start; /* Align the button to the start */
 }
-
-.navbar-toggler {
-    background-color: rgb(240, 235, 220);
-}
-
-.custom-card {
-    width: 18rem; /* Set a fixed width for the cards */
-    border: 1px solid rgb(65, 44, 3); /* Set the border color for the cards */
-}
-
-.custom-card-img {
-    height: 200px; /* Set a fixed height for the images */
-    object-fit: cover; /* Ensure the image covers the entire area */
-}
-
-.custom-card-body {
+.card-body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Ensure the content is spaced evenly */
-    padding: 1rem; /* Add some padding to the card body */
-    flex-grow: 1; /* Allow the card body to grow and take available space */
+    
+}
+.navbar-toggler {
+    background-color: rgb(240, 235, 220);
+    border: 1px solid rgb(65, 44, 3);
 }
 
 .card-title {
     margin-bottom: 1rem; /* Add some space below the title */
 }
 
-.bg-custom-1 {
-    background-color: rgb(240, 235, 220); /* Set the background color for the cards */
-}
-
 .btn:hover {
     background-color: rgb(65, 44, 3);
     color: rgb(255, 244, 229);
-}
-.navbar-toggler {
-    background-color: rgb(240, 235, 220);
-}
-
-.custom-card {
-    width: 9rem; /* Set the width to 50% of the original size (18rem / 2) */
-    border: 1px solid rgb(65, 44, 3); /* Set the border color for the cards */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 1rem; /* Add margin to create space between the cards */
-}
-
-.custom-card-img {
-    height: 100px; /* Set the height to 50% of the original size (200px / 2) */
-    object-fit: cover; /* Ensure the image covers the entire area */
-    margin-top: 1rem; /* Add some space above the image */
-}
-
-.custom-card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Ensure the content is spaced evenly */
-    padding: 0.5rem; /* Reduce padding to 50% of the original size */
-    flex-grow: 1; /* Allow the card body to grow and take available space */
-}
-
-.card-title {
-    margin-bottom: 0.5rem; /* Reduce margin to 50% of the original size */
-}
-
-.custom-card {
-    width: 9rem; /* Set the width to 50% of the original size (18rem / 2) */
-    border: 1px solid rgb(65, 44, 3); /* Set the border color for the cards */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 1rem; /* Add margin to create space between the cards */
-}
-
-.custom-card-img {
-    height: 100px; /* Set the height to 50% of the original size (200px / 2) */
-    object-fit: cover; /* Ensure the image covers the entire area */
-    margin-top: 1rem; /* Add some space above the image */
-}
-
-.custom-card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Ensure the content is spaced evenly */
-    padding: 0.5rem; /* Reduce padding to 50% of the original size */
-    flex-grow: 1; /* Allow the card body to grow and take available space */
-}
-
-.card-title {
-    margin-bottom: 0.5rem; /* Reduce margin to 50% of the original size */
 }
 
 .bg-custom-1 {
@@ -173,30 +93,20 @@ h5, h3 {
     margin: 1vh;
 }
 
-
-.navbar-toggler {
-    background-color: rgb(250, 245, 235);
-}
-
-/* Media query for smaller screens */
-@media (max-width: 576px) {
-    .custom-card {
-        width: 100%; /* Make the card width 100% on smaller screens */
-    }
-    .custom-card-body {
-        height: auto; /* Allow the card body to adjust its height */
-    }
-}
-
-/* Media query for larger screens */
-@media (min-width: 992px) {
-    .custom-card {
-        width: 24rem; /* Increase the width of the cards on larger screens */
-    }
-    .custom-card-body {
-        height: auto; /* Allow the card body to adjust its height */
-    }
-}
 #navbar {
     background-color: rgb(220, 215, 200);
+}
+footer {
+    background-color: rgb(220, 215, 200);
+    text-align: center;
+    
+}
+footer a {
+    color: rgb(65, 44, 3);
+    text-decoration: underline;
+}
+.offcanvas-body, .offcanvas-header{
+    background-color: rgb(220, 215, 200);
+    color: rgb(65, 44, 3);
+    text-justify:auto;
 }

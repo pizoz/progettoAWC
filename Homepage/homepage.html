@@ -47,7 +47,7 @@
                             <button
                                 class="navbar-toggler"
                                 type="button"
-                                data-bs-toggle="collapse"
+                                data-bs-toggle="offcanvas"
                                 data-bs-target="#navbarNav"
                                 aria-controls="navbarNav"
                                 aria-expanded="false"
@@ -56,22 +56,29 @@
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                         </div>
-                        <div class="collapse navbar-collapse" id="navbarNav">
-                            <ul class="navbar-nav ms-auto ">
-                                <li class="nav-item align-content-end">
-                                    <a href="#" class="nav-link" id="login">Login</a>
-                                </li>
-                                <li class="nav-item align-content-end">
-                                    <a href="signup.html" class="nav-link" id="profilo">Registrati</a>
-                                </li>
-                            </ul>
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="navbarNavLabel"></h5>
+                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item align-content-end">
+                                        <a href="signup.html" class="nav-link" id="profilo">Registrati</a>
+                                    </li>
+                                    <li class="nav-item align-content-end">
+                                        <a href="..\login\login.html" class="nav-link" id="login">Login</a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
                         </div>
-                        
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
                                 // Check if user is logged in and change the profile link and text accordingly
                                 var logged = JSON.parse(localStorage.getItem("logged"));
                                 var profileLink = document.getElementById("profilo");
+                                var loginLink = document.getElementById("login");
                                 console.log(logged);
                                 if (logged) {
                                 profileLink.innerText = "Profilo";
@@ -79,28 +86,19 @@
                                 loginLink.innerText = "Logout";
                                 loginLink.onclick = function() {
                                     localStorage.setItem("logged", false);
-                                    window.location.href = "homepage.html";
+                                    window.location.href = "..\\Homepage\\homepage.html";
                                 };
                                 loginLink.href = "#";
                             } else {
                                 profileLink.innerText = "Registrati";
                                 profileLink.href = "signup.html";
                                 loginLink.innerText = "Login";
-                                loginLink.href = "homepage.html";
+                                loginLink.href = "..\\login\\login.html";
                                 loginLink.onclick = function() {
                                     localStorage.setItem("logged", true);
                                 };
                             }
                             });
-                        </script>
-                        <script>
-                            // Check if user is logged in and change the profile link and text accordingly
-                            var logged = JSON.parse(localStorage.getItem("logged"));
-                            var profileLink = document.getElementById("profilo");
-                            var loginLink = document.getElementById("login");
-
-                            
-
                         </script>
                     </nav>
                 </div>
@@ -139,16 +137,16 @@
                         </div>
                     </div>
                 </div>
-                
+            </div>
         </main>
-        <footer>
+        <footer class="p-5 mt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
                         <p>
-                            <a href="homepage.html">Home</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a>
+                             <a href="..\Homepage\homepage.html">Home</a> | <a href="mailto:niccolo.pizzocri@studenti.unimi.it?subject=FORZA%20JUVE&body=SIUUUUUUUUUUUM">Contact</a>
                         </p>
-                        <p>&copy; 2024 - All rights reserved</p>
+                        <p>&copy; 2024 - Niccolò Pizzocri</p>
                     </div>
                 </div>
             </div>

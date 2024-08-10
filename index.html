@@ -2,6 +2,9 @@
   //Reset del sito, cancella tutti gli utenti registrati e il login
   localStorage.clear();
   window.location.href = ".\\Homepage\\homepage.html";
-  localStorage.setItem('logged', 'true');
-  localStorage.setItem('RegisteredUsers', []);
+  localStorage.setItem('logged', 'false');
+  let users = {};
+  localStorage.setItem('RegisteredUsers', JSON.stringify(users));
+  localStorage.setItem('LoggedUser',"");
+  localStorage.setItem('Recensini', JSON.stringify(users));
 </script>

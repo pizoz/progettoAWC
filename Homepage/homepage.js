@@ -33,12 +33,13 @@ async function crea_carosello() {
         if (i === 0) {
             div.classList.add("active");
         }
-        // div.setAttribute("data-bs-interval", "false");
+        div.setAttribute("data-bs-interval", "2000");
 
         let cardContainer = document.createElement("div");
         cardContainer.className = "card-container d-flex justify-content-center";
         for (let j = i; j < i + 3 && j < meals.length; j++) {
             let card = document.createElement("div");
+            
             card.className = "card bg-custom-1";
             let img = document.createElement("img");
             img.className = "card-img-top";
@@ -68,4 +69,6 @@ async function crea_carosello() {
         div.appendChild(cardContainer);
         carosello.appendChild(div);
     }
+
+  
 }
