@@ -72,3 +72,22 @@ async function crea_carosello() {
 
   
 }
+async function suggestions() {
+    let stringa = document.getElementById("searchbar").value;
+    const URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + stringa;
+    let response = await fetch(URL);
+    let data = await response.json();
+    let meals = data.meals;
+    let suggestions = document.getElementById("suggestions");
+    if (meals) {
+        for (let i = 0; i < meals.length; i++) {
+            let meal = meals[i];
+            let suggestion = document.createElement("a");
+            suggestion.className = "dropdown-item";
+            suggestion.href = "..\\Ricetta\\ricetta.html?id=" + meal["idMeal"];
+            suggestion.innerText = meal["strMeal"];
+            suggestions.appendChild(suggestion);
+        }
+    }
+
+}

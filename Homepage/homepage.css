@@ -68,6 +68,11 @@ h5, h3 {
     border-color: rgb(65, 44, 3);
     align-self: flex-start; /* Align the button to the start */
 }
+.btn:active {
+    background-color: rgb(65, 44, 3);
+    color: rgb(255, 244, 229);
+    border-color: rgb(65, 44, 3);
+}
 .card-body {
     display: flex;
     flex-direction: column;
@@ -85,6 +90,12 @@ h5, h3 {
 .btn:hover {
     background-color: rgb(65, 44, 3);
     color: rgb(255, 244, 229);
+    border-color: rgb(65, 44, 3);
+}
+.btn:active {
+    background-color: rgb(65, 44, 3) !important; 
+    color: rgb(255, 244, 229) !important;
+    border-color: rgb(65, 44, 3) !important;
 }
 
 .bg-custom-1 {

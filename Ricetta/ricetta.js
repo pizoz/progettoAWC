@@ -1,6 +1,10 @@
 async function getRicetta() {
 
     let id = window.location.href.split("id=")[1];
+    if(id == undefined){
+        id = localStorage.getItem("id");
+    }
+    localStorage.setItem("id", id);
     let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+id;
     let response = await fetch(url);
     let data = await response.json();
@@ -29,7 +33,7 @@ async function getRicetta() {
     for(let i=1; i<=20; i++){
         let ingredient = meal["strIngredient"+i];
         let measure = meal["strMeasure"+i];
-        if(ingredient != ""){
+        if(ingredient != "" && ingredient != null){
             let li = document.createElement("li");
             li.innerText = `${measure} ${ingredient}`;
             ul.appendChild(li);

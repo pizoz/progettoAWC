@@ -80,8 +80,9 @@
                                 var profileLink = document.getElementById("profilo");
                                 var loginLink = document.getElementById("login");
                                 console.log(logged);
+                                console.log(localStorage.getItem("LoggedUser"));
                                 if (logged) {
-                                profileLink.innerText = "Profilo";
+                                profileLink.innerText = localStorage.getItem("LoggedUser");
                                 profileLink.href = "profilo.html";
                                 loginLink.innerText = "Logout";
                                 loginLink.onclick = function() {

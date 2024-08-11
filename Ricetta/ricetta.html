@@ -57,11 +57,12 @@
                         </div>
                         <div class="offcanvas-body">
                             <ul class="navbar-nav ms-auto">
-                                <li class="nav-item align-content-end">
-                                    <a href="#" class="nav-link" id="login">Login</a>
-                                </li>
+                                
                                 <li class="nav-item align-content-end">
                                     <a href="signup.html" class="nav-link" id="profilo">Registrati</a>
+                                </li>
+                                <li class="nav-item align-content-end">
+                                    <a href="#" class="nav-link" id="login">Login</a>
                                 </li>
                             </ul>
                         </div>
@@ -74,19 +75,19 @@
                             var loginLink = document.getElementById("login"); // Declare the loginLink variable
                             console.log(logged);
                             if (logged) {
-                            profileLink.innerText = "Profilo";
+                            profileLink.innerText = localStorage.getItem("LoggedUser");
                             profileLink.href = "profilo.html";
                             loginLink.innerText = "Logout";
                             loginLink.onclick = function() {
                                 localStorage.setItem("logged", false);
-                                window.location.href = "homepage.html";
+                                window.location.href = "..\\Homepage\\homepage.html";
                             };
                             loginLink.href = "#";
                         } else {
                             profileLink.innerText = "Registrati";
                             profileLink.href = "signup.html";
                             loginLink.innerText = "Login";
-                            loginLink.href = "homepage.html";
+                            loginLink.href = "..\\login\\login.html";
                             loginLink.onclick = function() {
                                 localStorage.setItem("logged", true);
                             };

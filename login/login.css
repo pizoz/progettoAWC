@@ -9,3 +9,43 @@ body {
     width: 80%;
     height: auto;
 }
+#navbar {
+    background-color: rgb(220, 215, 200);
+}
+#loginform {
+    border: 2px solid rgb(65, 44, 3);
+    padding-bottom: 1vh;
+    margin-top: 5vh;
+    background-color: rgb(220, 215, 200);
+}
+.btn {
+    background-color: rgb(255, 244, 229);
+    color: rgb(65, 44, 3);
+    border-color: rgb(65, 44, 3);
+}
+.btn:hover {
+    background-color: rgb(65, 44, 3);
+    color: rgb(255, 244, 229);
+}
+.btn:active {
+    background-color: rgb(65, 44, 3) !important; 
+    color: rgb(255, 244, 229) !important;
+    border-color: rgb(65, 44, 3) !important;
+}
+.form-group {
+    margin: 3vh;
+}
+.btn {
+    margin: 0vh 3vh 3vh 3vh;
+}
+input {
+    outline:none;
+}
+input:focus {
+    outline: unset;
+    outline: none;
+    border: unset;
+    border: 5px solid rgb(65,44,3);
+    box-shadow: unset;
+    box-shadow: none;
+}

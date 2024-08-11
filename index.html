@@ -3,8 +3,12 @@
   localStorage.clear();
   window.location.href = ".\\Homepage\\homepage.html";
   localStorage.setItem('logged', 'false');
-  let users = {};
+  let users = [];
+  users.push({
+    "username": "admin",
+    "password": "admin"
+  });
   localStorage.setItem('RegisteredUsers', JSON.stringify(users));
   localStorage.setItem('LoggedUser',"");
-  localStorage.setItem('Recensini', JSON.stringify(users));
+  localStorage.setItem('Recensioni', JSON.stringify(users));
 </script>
