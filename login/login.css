@@ -49,3 +49,6 @@ input:focus {
     box-shadow: unset;
     box-shadow: none;
 }
+.col-4 {
+    text-align: center;
+}
