@@ -62,38 +62,36 @@
                                     <a href="signup.html" class="nav-link" id="profilo">Registrati</a>
                                 </li>
                                 <li class="nav-item align-content-end">
-                                    <a href="#" class="nav-link" id="login">Login</a>
+                                    <a class="nav-link" id="login">Login</a>
                                 </li>
                             </ul>
                         </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+                                // Check if user is logged in and change the profile link and text accordingly
+                                var logged = localStorage.getItem("logged");
+                                var profileLink = document.getElementById("profilo");
+                                var loginLink = document.getElementById("login"); // Declare the loginLink variable
+                                console.log(logged);
+                            if ( logged == "true") {
+                                profileLink.innerText = localStorage.getItem("LoggedUser");
+                                profileLink.href = "profilo.html";
+                                loginLink.innerText = "Logout";
+                                loginLink.href = "..\\Homepage\\homepage.html";
+                                loginLink.onclick = function() {
+                                    localStorage.setItem("logged", "false");
+                                    localStorage.setItem("LoggedUser", "");
+                                };
+                            } else {
+                                profileLink.innerText = "Registrati";
+                                profileLink.href = "signup.html";
+                                loginLink.innerText = "Login";
+                                loginLink.href = "..\\login\\login.html";
+                            }
+                            });
+                        </script>
                     </div>
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            // Check if user is logged in and change the profile link and text accordingly
-                            var logged = JSON.parse(localStorage.getItem("logged"));
-                            var profileLink = document.getElementById("profilo");
-                            var loginLink = document.getElementById("login"); // Declare the loginLink variable
-                            console.log(logged);
-                            if (logged) {
-                            profileLink.innerText = localStorage.getItem("LoggedUser");
-                            profileLink.href = "profilo.html";
-                            loginLink.innerText = "Logout";
-                            loginLink.onclick = function() {
-                                localStorage.setItem("logged", false);
-                                window.location.href = "..\\Homepage\\homepage.html";
-                            };
-                            loginLink.href = "#";
-                        } else {
-                            profileLink.innerText = "Registrati";
-                            profileLink.href = "signup.html";
-                            loginLink.innerText = "Login";
-                            loginLink.href = "..\\login\\login.html";
-                            loginLink.onclick = function() {
-                                localStorage.setItem("logged", true);
-                            };
-                        }
-                        });
-                    </script>
+                    
                 </nav>
             </div>
         </div>
@@ -120,13 +118,46 @@
                 <div class="col-12" id="instructions">
                     
                 </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div id="video"></div>
             </div>
-            
+            <div class="row">
+                <div id="video">
+
+                </div>
+            </div>
+            <div class="row">
+                <div id="recensioni">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" id="form">
+                     <h3 class="text-center m-5">Lascia una recensione!</h3>
+                    <form class="row g-3" id="recensione" method="post">
+                        <div class="col-6">
+                            <label for="titolo" class="form-label">Titolo</label>
+                            <input type="text" class="form-control" id="titolo" name="titolo" required>
+                        </div>
+                        <div class="col-1">
+                            <label for="voto" class="form-label">Voto</label>
+                            <select id="voto" class="form-select" name="voto" required>
+                                <option selected>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label for="testo" class="form-label">Recensione</label>
+                            <textarea class="form-control" id="testo" name="testo" required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary" onclick="addRecensione()">Invia</button>
+                        </div>
+                </div>
+            </div>
         </div>
+        
     </main>
     <footer class="p-5 mt-5">
         <div class="container">

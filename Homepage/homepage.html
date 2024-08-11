@@ -67,7 +67,7 @@
                                         <a href="signup.html" class="nav-link" id="profilo">Registrati</a>
                                     </li>
                                     <li class="nav-item align-content-end">
-                                        <a href="..\login\login.html" class="nav-link" id="login">Login</a>
+                                        <a class="nav-link" id="login">Login</a>
                                     </li>
                                     
                                 </ul>
@@ -76,28 +76,24 @@
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
                                 // Check if user is logged in and change the profile link and text accordingly
-                                var logged = JSON.parse(localStorage.getItem("logged"));
+                                var logged = localStorage.getItem("logged");
                                 var profileLink = document.getElementById("profilo");
-                                var loginLink = document.getElementById("login");
+                                var loginLink = document.getElementById("login"); // Declare the loginLink variable
                                 console.log(logged);
-                                console.log(localStorage.getItem("LoggedUser"));
-                                if (logged) {
+                            if ( logged == "true") {
                                 profileLink.innerText = localStorage.getItem("LoggedUser");
                                 profileLink.href = "profilo.html";
                                 loginLink.innerText = "Logout";
+                                loginLink.href = "..\\Homepage\\homepage.html";
                                 loginLink.onclick = function() {
-                                    localStorage.setItem("logged", false);
-                                    window.location.href = "..\\Homepage\\homepage.html";
+                                    localStorage.setItem("logged", "false");
+                                    localStorage.setItem("LoggedUser", ""); 
                                 };
-                                loginLink.href = "#";
                             } else {
                                 profileLink.innerText = "Registrati";
                                 profileLink.href = "signup.html";
                                 loginLink.innerText = "Login";
                                 loginLink.href = "..\\login\\login.html";
-                                loginLink.onclick = function() {
-                                    localStorage.setItem("logged", true);
-                                };
                             }
                             });
                         </script>

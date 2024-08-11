@@ -11,14 +11,17 @@ async function checkLogin(){
         
         if(users[i].username == username && users[i].password == password){
 
-            localStorage.setItem("logged", JSON.stringify(users[i]));
+            localStorage.setItem("logged", "true");
             localStorage.setItem("LoggedUser", username);
             setTimeout(function() {
                 window.location.href = "..\\Homepage\\homepage.html";
-            }) 
+            });
             return;
         }
    }
     alert("Username o password errati", "danger");
    window.location.reload();
+}
+function stampa() {
+    console.log(localStorage.getItem("oldPage"));
 }

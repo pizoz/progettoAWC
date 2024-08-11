@@ -1,10 +1,8 @@
 async function getRicetta() {
-
+    //salvo l'id dell'ultima ricetta caricata
     let id = window.location.href.split("id=")[1];
-    if(id == undefined){
-        id = localStorage.getItem("id");
-    }
     localStorage.setItem("id", id);
+    //ricavo le informazioni della ricetta
     let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+id;
     let response = await fetch(url);
     let data = await response.json();
@@ -55,17 +53,76 @@ async function getRicetta() {
     h3_3.innerText = "Tutorial";
     h3_3.style.textAlign = "center";
     h3_3.classList.add("m-2");
-    video.appendChild(h3_3);
+    instructions.appendChild(h3_3);
     let iframe = document.createElement("iframe");
-    //i want the video preview to be centered, i want it height and width to be the same ratio as the video and relative to the screen
-    iframe.style.width = "560px";
-    iframe.style.height = "315px";
+    //i want the instructions preview to be centered, i want it height and width to be the same ratio as the instructions and relative to the screen
+    iframe.style.width = "auto";
+    iframe.style.height = "auto";
     iframe.style.alignContent = "center";
     iframe.style.margin = "auto";
     iframe.style.display = "block";
     iframe.classList.add("mb-5");
     iframe.src = meal["strYoutube"].replace("watch?v=", "embed/");
-    video.appendChild(iframe);
-
-
+    instructions.appendChild(iframe);
+    let recensioni = document.getElementById("recensioni");
+    //Create an h3 element and put text inside it
+    let h3_4 = document.createElement("h3");
+    h3_4.innerText = "Recensioni";
+    h3_4.style.textAlign = "center";
+    recensioni.appendChild(h3_4);
+    let array_recensioni = JSON.parse(localStorage.getItem("Recensioni"));
+    console.log(array_recensioni);
+    let numberofrecensioni = 0;
+    array_recensioni.forEach(recensione => {
+        if(recensione.idRicetta == id){
+            let div = document.createElement("div");
+            
+            div.classList.add("border", "border-dark", "rounded", "p-3","col-3","recensione","d-inline-block","justify-content-center");
+            let h5 = document.createElement("h5");
+            h5.innerText = recensione.titolo;
+            div.appendChild(h5);
+            let voto = document.createElement("p");
+            voto.innerText = "Voto: "+recensione.voto+"/5";
+            div.appendChild(voto);
+            let p = document.createElement("p");
+            p.innerText = recensione.testo;
+            div.appendChild(p);
+            recensioni.appendChild(div);
+            let user = document.createElement("p");
+            user.innerText = "- "+recensione.username;
+            user.style.textAlign = "right";
+            user.style.fontStyle = "italic";
+            div.appendChild(user);
+            numberofrecensioni++;
+        }
+    });
+    if(numberofrecensioni == 0){
+        let p = document.createElement("h4");
+        p.classList.add("text-center");
+        p.innerText = "Ancora nessuna recensione per questa ricetta";
+        recensioni.appendChild(p);
+    }
+}
+function addRecensione(){
+    if(localStorage.getItem("logged") != "true"){
+        alert("Devi essere loggato per poter lasciare una recensione");
+        location.href = "..\\login\\login.html";
+        return;
+    }
+    let titolo = document.getElementById("titolo").value;
+    let voto = document.getElementById("voto").value;
+    let testo = document.getElementById("testo").value;
+    let id = localStorage.getItem("id");
+    let username = localStorage.getItem("LoggedUser");
+    let recensione = {
+        "idRicetta": id,
+        "username": username,
+        "titolo": titolo,
+        "testo": testo,
+        "voto": voto
+    };
+    let array_recensioni = JSON.parse(localStorage.getItem("Recensioni"));
+    array_recensioni.push(recensione);
+    localStorage.setItem("Recensioni", JSON.stringify(array_recensioni));
+    location.href = "ricetta.html?id="+id;
 }

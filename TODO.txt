@@ -47,8 +47,8 @@
         idRicetta:
         username:
         titolo:
-        valutazione:
-        descrizione:
+        testo:
+        voto:
     }
 
     utenti -> array contenente frammenti JSON
@@ -56,9 +56,10 @@
     {
         username:
         password:
+        email:
         nome:
         cognome:
-        birthdate:
+        datanascita:
     }
     dell'utente loggato in teoria mi basta sono sapere username
 
