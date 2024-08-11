@@ -5,11 +5,11 @@
         + visualizzazione e gestione delle proprie recensioni
         + ricettario (creato vuoto alla creazione dell'account
             è una serie di ricette "salvate")
-    3. ricerca di ricette (uso ricerca con parole 
-        ma anche suggerimenti random appena aperto sito)
-    4. una volta selezionata una ricetta deve esistere una pagina
-        con tutte le informazioni relative alla ricetta (ingredienti)
-        + recensioni
+    3. ricerca di ricette (uso ricerca con parole NON FATTO
+        ma anche suggerimenti random appena aperto sito) FATTO
+    4. una volta selezionata una ricetta deve esistere una pagina FATTO
+        con tutte le informazioni relative alla ricetta (ingredienti) FATTO
+        + recensioni FATTO
 
     
     API:
