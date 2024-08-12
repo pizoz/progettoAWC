@@ -82,7 +82,17 @@ async function getRicetta() {
             h5.innerText = recensione.titolo;
             div.appendChild(h5);
             let voto = document.createElement("p");
-            voto.innerText = "Voto: "+recensione.voto+"/5";
+            for (let i = 0; i < 5; i++) {
+                if (i< recensione.voto) {
+                    let star = document.createElement("i");
+                    star.classList.add("bi", "bi-star-fill");
+                    voto.appendChild(star);
+                } else {
+                    let star = document.createElement("i");
+                    star.classList.add("bi", "bi-star");
+                    voto.appendChild(star);
+                };
+            };
             div.appendChild(voto);
             let p = document.createElement("p");
             p.innerText = recensione.testo;
@@ -110,7 +120,7 @@ function addRecensione(){
         return;
     }
     let titolo = document.getElementById("titolo").value;
-    let voto = document.getElementById("voto").value;
+    let voto = document.getElementById("rating").value;
     let testo = document.getElementById("testo").value;
     let id = localStorage.getItem("id");
     let username = localStorage.getItem("LoggedUser");

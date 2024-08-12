@@ -49,6 +49,18 @@ input:focus {
     box-shadow: unset;
     box-shadow: none;
 }
-.col-4 {
+.col-4 {    
     text-align: center;
+}
+a {
+    color: rgb(65, 44, 3);
+}
+footer {
+    margin-top: 20%;
+    background-color: rgb(220, 215, 200);
+    text-align: center;
+}
+footer a {
+    color: rgb(65, 44, 3);
+    text-decoration: underline;
 }

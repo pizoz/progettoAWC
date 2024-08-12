@@ -108,9 +108,9 @@ h5, h3 {
     background-color: rgb(220, 215, 200);
 }
 footer {
+    margin-top: 20%;
     background-color: rgb(220, 215, 200);
     text-align: center;
-    
 }
 footer a {
     color: rgb(65, 44, 3);
