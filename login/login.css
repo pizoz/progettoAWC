@@ -17,11 +17,13 @@ body {
     padding-bottom: 1vh;
     margin-top: 5vh;
     background-color: rgb(220, 215, 200);
+    border-radius: 10px;
 }
 .btn {
     background-color: rgb(255, 244, 229);
     color: rgb(65, 44, 3);
     border-color: rgb(65, 44, 3);
+    margin: 0vh 3vh 3vh 3vh;
 }
 .btn:hover {
     background-color: rgb(65, 44, 3);
@@ -34,9 +36,6 @@ body {
 }
 .form-group {
     margin: 3vh;
-}
-.btn {
-    margin: 0vh 3vh 3vh 3vh;
 }
 input {
     outline:none;

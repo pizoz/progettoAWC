@@ -21,6 +21,38 @@ async function getRicetta() {
     let area = document.createElement("p");
     area.innerHTML = "<b>Area: </b>"+meal["strArea"];
     title.appendChild(area);
+    let valutazione = document.createElement("p");
+    let recensioniricetta = JSON.parse(localStorage.getItem("Recensioni"));
+    let media = 0;
+    let count = 0;
+    recensioniricetta.forEach(recensione => {
+        if(recensione.idRicetta == id){
+            media += recensione.voto;
+            count++;
+        }
+    });
+    if(count != 0){
+        media = media/count;
+    } else {
+        media = Math.random()*5;
+    }
+    let mediafalsa = Math.round(media);
+    valutazione.innerHTML = "<b>Valutazione: </b>";
+    valutazione.style.textWrap = "nowrap";
+    for (let i = 0; i < 5; i++) {
+        if (i< mediafalsa) {
+            let star = document.createElement("i");
+            star.classList.add("bi", "bi-star-fill");
+            valutazione.appendChild(star);
+        } else {
+            let star = document.createElement("i");
+            star.classList.add("bi", "bi-star");
+            valutazione.appendChild(star);
+        };
+    };
+    valutazione.innerHTML += " ("+media.toFixed(1)+")";
+    
+    title.appendChild(valutazione);
     let img = document.getElementById("img");
     //Create an img element and put the image inside it
     let image = document.createElement("img");
@@ -61,17 +93,16 @@ async function getRicetta() {
     h3_3.innerText = "Tutorial";
     h3_3.style.textAlign = "center";
     h3_3.classList.add("m-2");
-    instructions.appendChild(h3_3);
+    video.appendChild(h3_3);
     let iframe = document.createElement("iframe");
     //i want the instructions preview to be centered, i want it height and width to be the same ratio as the instructions and relative to the screen
-    iframe.style.width = "auto";
-    iframe.style.height = "auto";
+    iframe.style.width = "50vw";
+    iframe.style.height = "29vw";
     iframe.style.alignContent = "center";
     iframe.style.margin = "auto";
     iframe.style.display = "block";
-    iframe.classList.add("mb-2");
     iframe.src = meal["strYoutube"].replace("watch?v=", "embed/");
-    instructions.appendChild(iframe);
+    video.appendChild(iframe);
     let recensioni = document.getElementById("recensioni");
     //Create an h3 element and put text inside it
     let h3_4 = document.createElement("h3");
@@ -123,7 +154,7 @@ async function getRicetta() {
 }
 function addRecensione(){
     
-    let titolo = document.getElementById("titolo").value;
+    let titolo = document.getElementById("titolorecensione").value;
     let voto = document.getElementById("rating").value;
     let testo = document.getElementById("testo").value;
     let id = localStorage.getItem("id");
@@ -135,6 +166,8 @@ function addRecensione(){
         "testo": testo,
         "voto": voto
     };
+    console.log(recensione);
+    
     let array_recensioni = JSON.parse(localStorage.getItem("Recensioni"));
     array_recensioni.push(recensione);
     localStorage.setItem("Recensioni", JSON.stringify(array_recensioni));

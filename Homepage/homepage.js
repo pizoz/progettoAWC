@@ -84,7 +84,7 @@ async function crea_carosello() {
                 };
             };
             let mediastringa = document.createElement("i");
-            mediastringa.innerText = " (" + mediavera.toFixed(1) + ")";
+            mediastringa.innerText = " (" + mediavera.toFixed(1) + ")"+ " " + count + " recensioni";
             valutazione.appendChild(mediastringa);
             cardBody.appendChild(valutazione);
 

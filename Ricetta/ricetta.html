@@ -61,7 +61,7 @@
                             <ul class="navbar-nav ms-auto">
                                 
                                 <li class="nav-item align-content-end">
-                                    <a href="signup.html" class="nav-link" id="profilo">Registrati</a>
+                                    <a href="..\\Signup\\signup.html" class="nav-link" id="profilo">Registrati</a>
                                 </li>
                                 <li class="nav-item align-content-end">
                                     <a class="nav-link" id="login">Login</a>
@@ -130,10 +130,10 @@
             <div class="row" id="formrecensione">
                 <div class="col-12" id="form">
                      <h3 class="text-center m-2">Lascia una recensione!</h3>
-                    <form class="row g-3" id="recensione" method="post">
+                    <form class="row g-3" id="recensione" method="post" onsubmit="addRecensione()">
                         <div class="col-6">
-                            <label for="titolo" class="form-label">Titolo</label>
-                            <input type="text" class="form-control" id="titolo" name="titolo" required>
+                            <label for="titolorecensione" class="form-label">Titolo</label>
+                            <input type="text" class="form-control" id="titolorecensione" name="titolorecensione" required>
                         </div>
                         <div class="col-3">
                             <label for="voto" class="form-label">Valutazione</label>
@@ -144,7 +144,7 @@
                                 <i class="bi bi-star"></i>
                                 <i class="bi bi-star"></i>
                             </div>
-                        <input type="hidden" id="rating" name="rating" value="0">
+                        <input type="hidden" id="rating" name="rating" value="0" required>
                         <p></p>
                         </div>
                         <div class="col-12">
@@ -152,7 +152,7 @@
                             <textarea class="form-control" id="testo" name="testo" required></textarea>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary" onclick="addRecensione()">Invia</button> <!--bug ricaricamento modulo-->
+                            <button type="submit" class="btn btn-primary">Invia</button> <!--bug ricaricamento modulo-->
                         </div>
                     </form>
                 </div>

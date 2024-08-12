@@ -30,7 +30,7 @@ body {
     /* background-color: lightblue; */
     text-align: center;
 }
-.col-6 {
+#titolo,#copertina {
     /* background-color: lightblue; */
     text-align: center;
 }
@@ -74,10 +74,9 @@ h5, h3,h2 {
 li {
     list-style-type: none;
 }
-#form{
+#form, #rowvideo{
     padding: 1vh;
     border: 1px solid rgb(65, 44, 3);
-    margin: 2vh;
     background-color: rgb(220, 215, 200);
 }
 #ingredients,#instructions {
@@ -85,7 +84,7 @@ li {
     padding: 1vh;
 }
 .row{
-    margin: 1vh;
+    margin: 2vh;
 }
 #rigapreparazione{
     background-color: rgb(220, 215, 200);
@@ -110,6 +109,7 @@ footer a {
     width: auto;
 }
 .recensione {
+    margin: 2vh;
     background-color: rgb(250, 245, 235);
     border: 1px solid rgb(65, 44, 3);  
 }
