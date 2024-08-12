@@ -16,7 +16,7 @@
     <script src="ricetta.js"></script>
 
 </head>
-<body onload="getRicetta()" >
+<body onload="body()" >
     <header>
         <div class="container">
             <div class="row" id="navbar">
@@ -86,7 +86,7 @@
                                 };
                             } else {
                                 profileLink.innerText = "Registrati";
-                                profileLink.href = "signup.html";
+                                profileLink.href = "..\\Signup\\signup.html";
                                 loginLink.innerText = "Login";
                                 loginLink.href = "..\\login\\login.html";
                             }
@@ -100,24 +100,20 @@
     </header>
     <main>
         <div class="container m-auto" >
-            <div class="row">
-                <div class="col-12">
-                    <div class="col" id="title">
-                    </div>  
-                </div>
-            </div>
-            <div class="row" id="immagine">
-                <div class="col-12" id="img">
+            <div class="row" id="titolo">
+                
+                <div class="col-lg-6 col-sm-12" id="img">
 
+                </div> 
+
+                <div class="col-lg-6 col-sm-12 d-flex flex-column align-items-center" id="title">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12" id="ingredients">
+            <div class="row" id="rigapreparazione">
+                <div class="col-lg-6 col-sm-12" id="ingredients">
                     
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12" id="instructions">
+                <div class="col-lg-6 col-sm-12" id="instructions">
                     
                 </div>
             </div>
@@ -131,9 +127,9 @@
 
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="formrecensione">
                 <div class="col-12" id="form">
-                     <h3 class="text-center m-5">Lascia una recensione!</h3>
+                     <h3 class="text-center m-2">Lascia una recensione!</h3>
                     <form class="row g-3" id="recensione" method="post">
                         <div class="col-6">
                             <label for="titolo" class="form-label">Titolo</label>
@@ -156,8 +152,9 @@
                             <textarea class="form-control" id="testo" name="testo" required></textarea>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary" onclick="addRecensione()">Invia</button>
+                            <button type="submit" class="btn btn-primary" onclick="addRecensione()">Invia</button> <!--bug ricaricamento modulo-->
                         </div>
+                    </form>
                 </div>
             </div>
         </div>

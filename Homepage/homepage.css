@@ -121,3 +121,6 @@ footer a {
     color: rgb(65, 44, 3);
     text-justify:auto;
 }
+i {
+    text-decoration: none;
+}

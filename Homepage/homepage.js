@@ -1,7 +1,6 @@
 const URL = "https://www.themealdb.com/api/json/v1/1/random.php"
 
 async function immagini_carosello() {
-    
     let meals = [];
     let codici = [];
     for (let i = 0; Object.keys(meals).length < 15; i++) {
@@ -56,6 +55,39 @@ async function crea_carosello() {
             category.innerText = "Categoria: "+ meals[j]["strCategory"];
             cardBody.appendChild(category);
 
+            let valutazione = document.createElement("p");
+            let recensioni = localStorage.getItem("Recensioni");
+            let array_recensioni = JSON.parse(recensioni);
+            let somma = 0;
+            let count = 0;
+            array_recensioni.forEach(recensione => {
+                if (recensione.idRicetta == meals[j]["idMeal"]) {
+                    somma += recensione.voto;
+                    count++;
+                }
+            });
+            let mediavera = Math.random() * 5;
+            if (count != 0) {
+                mediavera = somma / count;
+            }
+
+            let media = Math.round(mediavera);
+            for (let i = 0; i < 5; i++) {
+                if (i< media) {
+                    let star = document.createElement("i");
+                    star.classList.add("bi", "bi-star-fill");
+                    valutazione.appendChild(star);
+                } else {
+                    let star = document.createElement("i");
+                    star.classList.add("bi", "bi-star");
+                    valutazione.appendChild(star);
+                };
+            };
+            let mediastringa = document.createElement("i");
+            mediastringa.innerText = " (" + mediavera.toFixed(1) + ")";
+            valutazione.appendChild(mediastringa);
+            cardBody.appendChild(valutazione);
+
             let link = document.createElement("a");
             link.href = "..\\Ricetta\\ricetta.html?id=" + meals[j]["idMeal"];
             link.className = "btn btn-primary";
@@ -64,6 +96,7 @@ async function crea_carosello() {
 
             card.appendChild(cardBody);
             cardContainer.appendChild(card);
+            
         }
         div.appendChild(cardContainer);
         carosello.appendChild(div);

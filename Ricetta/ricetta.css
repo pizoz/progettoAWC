@@ -30,8 +30,11 @@ body {
     /* background-color: lightblue; */
     text-align: center;
 }
-.col {
+.col-6 {
     /* background-color: lightblue; */
+    text-align: center;
+}
+h2 {
     text-align: center;
 }
 h5, h3,h2 {
@@ -39,10 +42,9 @@ h5, h3,h2 {
 }
 #img img {
     /* 30% dell'altezza dello schermo */
+
     object-fit: cover;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
     border: 2px solid rgb(65, 44, 3);
 }
 #navbar {
@@ -60,28 +62,40 @@ h5, h3,h2 {
     align-self: flex-start; /* Align the button to the start */
 }
 #title {
-    margin: 2vh;
-    background-color: rgb(250, 245, 235);
+    padding: 10vw;
 }
 #img {
     /* rendilo grande come l'immagine all'interno */
     height: fit-content;
-    margin: 2vh;
+    /* i want the img inside to be centered */
+    display: flex;
+    justify-content: center;
 }
 li {
     list-style-type: none;
 }
-#ingredients,#instructions{
-    padding-top: 1vh;
+#form{
+    padding: 1vh;
     border: 1px solid rgb(65, 44, 3);
     margin: 2vh;
     background-color: rgb(220, 215, 200);
+}
+#ingredients,#instructions {
+    background-color: rgb(220, 215, 200);
+    padding: 1vh;
+}
+.row{
+    margin: 1vh;
+}
+#rigapreparazione{
+    background-color: rgb(220, 215, 200);
+    border: 1px solid rgb(65, 44, 3);
 }
 footer {
     margin-top: 20%;
     background-color: rgb(220, 215, 200);
     text-align: center;
-}
+} 
 footer a {
     color: rgb(65, 44, 3);
     text-decoration: underline;
@@ -92,13 +106,12 @@ footer a {
     text-justify:auto;
 }
 #copertina {
-    height: 70vh;
+    height: 30vw;
+    width: auto;
 }
 .recensione {
     background-color: rgb(250, 245, 235);
-    border: 1px solid rgb(65, 44, 3);
-    margin: 1vh;
-    
+    border: 1px solid rgb(65, 44, 3);  
 }
 h4 {
     font-weight: bolder;

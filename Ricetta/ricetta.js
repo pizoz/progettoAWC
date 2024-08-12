@@ -13,6 +13,14 @@ async function getRicetta() {
     let h2 = document.createElement("h2");
     h2.innerText = meal["strMeal"];
     title.appendChild(h2);
+    //TTitolo, area e categoria della ricetta
+    let category = document.createElement("p");
+    category.classList.add("m-3");
+    category.innerHTML = "<b>Categoria: </b>"+meal["strCategory"];
+    title.appendChild(category);
+    let area = document.createElement("p");
+    area.innerHTML = "<b>Area: </b>"+meal["strArea"];
+    title.appendChild(area);
     let img = document.getElementById("img");
     //Create an img element and put the image inside it
     let image = document.createElement("img");
@@ -61,7 +69,7 @@ async function getRicetta() {
     iframe.style.alignContent = "center";
     iframe.style.margin = "auto";
     iframe.style.display = "block";
-    iframe.classList.add("mb-5");
+    iframe.classList.add("mb-2");
     iframe.src = meal["strYoutube"].replace("watch?v=", "embed/");
     instructions.appendChild(iframe);
     let recensioni = document.getElementById("recensioni");
@@ -114,11 +122,7 @@ async function getRicetta() {
     }
 }
 function addRecensione(){
-    if(localStorage.getItem("logged") != "true"){
-        alert("Devi essere loggato per poter lasciare una recensione");
-        location.href = "..\\login\\login.html";
-        return;
-    }
+    
     let titolo = document.getElementById("titolo").value;
     let voto = document.getElementById("rating").value;
     let testo = document.getElementById("testo").value;
@@ -135,4 +139,15 @@ function addRecensione(){
     array_recensioni.push(recensione);
     localStorage.setItem("Recensioni", JSON.stringify(array_recensioni));
     location.href = "ricetta.html?id="+id;
+}
+function checklogin() {
+    if (localStorage.getItem("logged") == "false") {
+        let button = document.getElementById("formrecensione");
+        button.style.display = "none";
+    }
+
+}
+function body() {
+    getRicetta();
+    checklogin();
 }
