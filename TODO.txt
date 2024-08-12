@@ -1,6 +1,6 @@
     Progettazione sito ricette:
 
-    1. creazione account e login
+    1. creazione account e login FATTO
     2. gestione del proprio profilo (modifica dati ed eliminazione)
         + visualizzazione e gestione delle proprie recensioni
         + ricettario (creato vuoto alla creazione dell'account
