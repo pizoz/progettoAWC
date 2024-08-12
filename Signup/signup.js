@@ -31,5 +31,5 @@ function signup() {
     localStorage.setItem("Users", JSON.stringify(users));
     localStorage.setItem("LoggedUser", username);
     localStorage.setItem("logged", "true");
-    window.location.href = "/Homepage/homepage.html";
+    window.location.href = localStorage.getItem("oldPage");
 }

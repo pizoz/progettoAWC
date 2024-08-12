@@ -17,6 +17,7 @@ async function immagini_carosello() {
 }
 
 async function crea_carosello() {
+    localStorage.setItem("oldPage", window.location.href);
     let meals = await immagini_carosello();
     console.log(meals);
     console.log(Object.keys(meals))

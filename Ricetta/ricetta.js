@@ -1,4 +1,5 @@
 async function getRicetta() {
+    localStorage.setItem("oldPage", window.location.href);
     //salvo l'id dell'ultima ricetta caricata
     let id = window.location.href.split("id=")[1];
     localStorage.setItem("id", id);
@@ -73,7 +74,7 @@ async function getRicetta() {
         let measure = meal["strMeasure"+i];
         if(ingredient != "" && ingredient != null){
             let li = document.createElement("li");
-            li.innerText = `${measure} ${ingredient}`;
+            li.innerText = `${ingredient} - ${measure} `;
             ul.appendChild(li);
         }
     }
@@ -180,7 +181,12 @@ function checklogin() {
     }
 
 }
+function setOldPage() {
+    let logout = document.getElementById("logout");
+    localStorage.setItem("oldPage", window.location.href);
+}
 function body() {
     getRicetta();
     checklogin();
+    setOldPage();
 }

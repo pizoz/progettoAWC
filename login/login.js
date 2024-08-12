@@ -14,7 +14,7 @@ async function checkLogin(){
             localStorage.setItem("logged", "true");
             localStorage.setItem("LoggedUser", username);
             setTimeout(function() {
-                window.location.href = "..\\Homepage\\homepage.html";
+                window.location.href = localStorage.getItem("oldPage");
             });
             return;
         }
