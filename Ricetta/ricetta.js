@@ -16,7 +16,6 @@ async function getRicetta() {
     title.appendChild(h2);
     //TTitolo, area e categoria della ricetta
     let category = document.createElement("p");
-    category.classList.add("m-3");
     category.innerHTML = "<b>Categoria: </b>"+meal["strCategory"];
     title.appendChild(category);
     let area = document.createElement("p");
@@ -28,8 +27,10 @@ async function getRicetta() {
     let count = 0;
     recensioniricetta.forEach(recensione => {
         if(recensione.idRicetta == id){
-            media += recensione.voto;
+            media += parseInt(recensione.voto);
+            console.log(media);
             count++;
+            console.log(count);
         }
     });
     if(count != 0){
@@ -74,7 +75,7 @@ async function getRicetta() {
         let measure = meal["strMeasure"+i];
         if(ingredient != "" && ingredient != null){
             let li = document.createElement("li");
-            li.innerText = `${ingredient} - ${measure} `;
+            li.innerHTML = `<strong>${ingredient}</strong> - ${measure} `;
             ul.appendChild(li);
         }
     }

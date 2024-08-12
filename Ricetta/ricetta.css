@@ -35,14 +35,12 @@ body {
     text-align: center;
 }
 h2 {
-    text-align: center;
+    font-weight: 900;
 }
-h5, h3,h2 {
+h5, h3 {
     font-weight: bolder;
 }
 #img img {
-    /* 30% dell'altezza dello schermo */
-
     object-fit: cover;
     display: block;
     border: 2px solid rgb(65, 44, 3);
@@ -51,7 +49,7 @@ h5, h3,h2 {
     background-color: rgb(220, 215, 200);
 }
 .bg-custom-1 {
-    background-color: rgb(250, 245, 235); /* Set the background color for the cards */
+    background-color: rgb(250, 245, 235);
     border: 1px solid rgb(65, 44, 3);
     margin: 1vh;
 }
@@ -59,23 +57,26 @@ h5, h3,h2 {
     background-color: rgb(240, 235, 220);
     color: black;
     border-color: black;
-    align-self: flex-start; /* Align the button to the start */
+    align-self: flex-start;
 }
 #title {
-    padding: 10vw;
+    text-align: left;
 }
 #img {
-    /* rendilo grande come l'immagine all'interno */
     height: fit-content;
-    /* i want the img inside to be centered */
     display: flex;
     justify-content: center;
 }
 li {
     list-style-type: none;
 }
-#form, #rowvideo{
+#form{
     padding: 1vh;
+    border: 1px solid rgb(65, 44, 3);
+    background-color: rgb(220, 215, 200);
+}
+#rowvideo {
+    padding: 1vh 1vh 5vh 1vh;
     border: 1px solid rgb(65, 44, 3);
     background-color: rgb(220, 215, 200);
 }
