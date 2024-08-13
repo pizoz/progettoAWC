@@ -22,7 +22,7 @@
         <script src="homepage.js"></script>
     </head>
 
-    <body onload="crea_carosello()">
+    <body onload="body()">
         <header>
             <div class="container">
                 <div class="row" id="navbar">
@@ -33,17 +33,7 @@
                             </a>
                         </div>
                         <div class="col-4 col-lg-4">
-                            <form class="d-flex">
-                                <input
-                                    class="form-control me-2"
-                                    type="search"
-                                    placeholder="Cosa vuoi mangiare oggi?"
-                                    aria-label="Search"
-                                />
-                                <button class="btn btn-outline-success" type="submit" id="searchbutton">
-                                    Cerca
-                                </button>
-                            </form>
+                            
                         </div>
                         <div class="col-4 text-end d-lg-none">
                             <button
@@ -109,7 +99,18 @@
                     <div class="col-3">
                     </div>
                     <div class="col-6" id="searchbar">
-                        
+                        <h3 style="text-align: center;"> Cosa vuoi mangiare oggi?</h3>
+                        <form class="d-flex">
+                            
+                            <input id="inputsearch"
+                                class="form-control me-2"
+                                type="search"
+                                aria-label="Search"
+                            />
+                            <button class="btn btn-outline-success" type="submit" id="searchbutton">
+                                Cerca
+                            </button>
+                        </form>
                     </div>
                     <div class="col-3" >
                     </div>

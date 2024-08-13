@@ -53,26 +53,32 @@ async function crea_carosello() {
             cardBody.appendChild(caption);
 
             let category = document.createElement("p");
-            category.innerText = "Categoria: "+ meals[j]["strCategory"];
+            category.innerHTML = "<b>Categoria</b>: "+ meals[j]["strCategory"];
             cardBody.appendChild(category);
 
             let valutazione = document.createElement("p");
             let recensioni = localStorage.getItem("Recensioni");
             let array_recensioni = JSON.parse(recensioni);
             let somma = 0;
+            let difficolta = 0
             let count = 0;
             array_recensioni.forEach(recensione => {
                 if (recensione.idRicetta == meals[j]["idMeal"]) {
-                    somma += recensione.voto;
+                    difficolta += parseInt(recensione.difficolta);
+                    somma += parseInt(recensione.voto);
                     count++;
                 }
             });
-            let mediavera = Math.random() * 5;
+            let mediavera = 0;
+            let difficoltavera = 0;
+            // let mediavera = Math.random() * 5;
             if (count != 0) {
+                difficolta = difficolta / count;
                 mediavera = somma / count;
             }
-
+            difficoltavera = Math.round(difficolta);
             let media = Math.round(mediavera);
+            valutazione.innerHTML = "<b>Gusto</b>: ";
             for (let i = 0; i < 5; i++) {
                 if (i< media) {
                     let star = document.createElement("i");
@@ -84,10 +90,24 @@ async function crea_carosello() {
                     valutazione.appendChild(star);
                 };
             };
-            let mediastringa = document.createElement("i");
-            mediastringa.innerText = " (" + mediavera.toFixed(1) + ")"+ " " + count + " recensioni";
-            valutazione.appendChild(mediastringa);
+            valutazione.innerHTML += " (" + mediavera.toFixed(1) + ")";
             cardBody.appendChild(valutazione);
+
+            let valutazionedifficolta = document.createElement("p");
+            valutazionedifficolta.innerHTML = "<b>Difficoltà</b>: ";
+            for (let i = 0; i < 5; i++) {
+                if (i < difficoltavera) {
+                    let star = document.createElement("i");
+                    star.classList.add("bi", "bi-star-fill");
+                    valutazionedifficolta.appendChild(star);
+                } else {
+                    let star = document.createElement("i");
+                    star.classList.add("bi", "bi-star");
+                    valutazionedifficolta.appendChild(star);
+                };
+            };
+            valutazionedifficolta.innerHTML += " (" + difficolta.toFixed(1) + ")";
+            cardBody.appendChild(valutazionedifficolta);
 
             let link = document.createElement("a");
             link.href = "..\\Ricetta\\ricetta.html?id=" + meals[j]["idMeal"];
@@ -102,6 +122,18 @@ async function crea_carosello() {
         div.appendChild(cardContainer);
         carosello.appendChild(div);
     }
+}
 
-  
+async function ricettarandom() {
+    let ricetta = await fetch(URL);
+    let data = await ricetta.json();
+    let meal = data.meals[0];
+    let nome = meal["strMeal"];
+    let searchbar = document.getElementById("inputsearch");
+    searchbar.setAttribute("placeholder",nome);
+}
+
+function body() {
+    crea_carosello();
+    ricettarandom();
 }

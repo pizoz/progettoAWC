@@ -135,8 +135,8 @@
                             <label for="titolorecensione" class="form-label">Titolo</label>
                             <input type="text" class="form-control" id="titolorecensione" name="titolorecensione" required>
                         </div>
-                        <div class="col-3">
-                            <label for="voto" class="form-label">Valutazione</label>
+                        <div class="col-3" id="gustoform">
+                            <label for="voto" class="form-label">Gusto</label>
                             <div id="star-rating">
                                 <i class="bi bi-star"></i>
                                 <i class="bi bi-star"></i>
@@ -144,7 +144,19 @@
                                 <i class="bi bi-star"></i>
                                 <i class="bi bi-star"></i>
                             </div>
-                        <input type="hidden" id="rating" name="rating" value="0" required>
+                        <input type="hidden" id="gusto" name="gusto" value="0" required>
+                        <p></p>
+                        </div>
+                        <div class="col-3" id="difficoltaform">
+                            <label for="voto" class="form-label">Difficoltà</label>
+                            <div id="star-rating">
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                                <i class="bi bi-star"></i>
+                            </div>
+                        <input type="hidden" id="difficolta" name="difficolta" value="0" required>
                         <p></p>
                         </div>
                         <div class="col-12">
@@ -185,8 +197,9 @@
         ></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            var stars = document.querySelectorAll(".bi-star");
-            var rating = document.getElementById("rating");
+            var gusto = document.getElementById("gustoform");
+            var stars = gusto.querySelectorAll(".bi-star");
+            var rating = document.getElementById("gusto");
             stars.forEach(function(star, index) {
                 star.addEventListener("click", function() {
                     rating.value = index + 1;
@@ -227,6 +240,53 @@
                 star.addEventListener("mouseover", mouseOverHandler);
                 star.addEventListener("mouseout", mouseOutHandler);
             });
+
+            var form = document.getElementById("difficoltaform");
+            var stars2 = form.querySelectorAll(".bi-star");
+            var difficolta = document.getElementById("difficolta");
+            stars2.forEach(function(star, index) {
+                star.addEventListener("click", function() {
+                    difficolta.value = index + 1;
+                    stars2.forEach(function(s, i) {
+                        if (i <= index) {
+                            s.classList.remove("bi-star");
+                            s.classList.add("bi-star-fill");
+                        } else {
+                            s.classList.remove("bi-star-fill");
+                            s.classList.add("bi-star");
+                        }
+                    });
+                    star.removeEventListener("mouseover", mouseOverHandler);
+                    star.removeEventListener("mouseout", mouseOutHandler);
+                });
+
+                function mouseOverHandler() {
+                    stars2.forEach((s, i) => {
+                        if (i <= index) {
+                            s.classList.remove("bi-star");
+                            s.classList.add("bi-star-fill");
+                        } else {
+                            s.classList.remove("bi-star-fill");
+                            s.classList.add("bi-star");
+                        }
+                    });
+                }
+
+                function mouseOutHandler() {
+                    stars2.forEach((s, i) => {
+                        if (s.classList.contains("bi-star-fill")) {
+                            s.classList.remove("bi-star-fill");
+                            s.classList.add("bi-star");
+                        }
+                    });
+                }
+
+                star.addEventListener("mouseover", mouseOverHandler);
+                star.addEventListener("mouseout", mouseOutHandler);
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            
         });
     </script>
 </body>

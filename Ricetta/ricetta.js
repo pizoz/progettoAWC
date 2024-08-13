@@ -28,9 +28,7 @@ async function getRicetta() {
     recensioniricetta.forEach(recensione => {
         if(recensione.idRicetta == id){
             media += parseInt(recensione.voto);
-            console.log(media);
             count++;
-            console.log(count);
         }
     });
     if(count != 0){
@@ -39,7 +37,7 @@ async function getRicetta() {
         media = Math.random()*5;
     }
     let mediafalsa = Math.round(media);
-    valutazione.innerHTML = "<b>Valutazione: </b>";
+    valutazione.innerHTML = "<b>Gusto: </b>";
     valutazione.style.textWrap = "nowrap";
     for (let i = 0; i < 5; i++) {
         if (i< mediafalsa) {
@@ -53,8 +51,41 @@ async function getRicetta() {
         };
     };
     valutazione.innerHTML += " ("+media.toFixed(1)+")";
-    
+
+    let valutazionedifficolta = document.createElement("p");
+    valutazionedifficolta.innerHTML = "<b>Difficoltà: </b>";
+    let difficolta = 0;
+    count = 0;
+    recensioniricetta.forEach(recensione => {
+        if(recensione.idRicetta == id){
+            difficolta += parseInt(recensione.difficolta);
+            count++;
+        }
+    });
+    console.log(difficolta);
+    console.log(count);
+    if(count != 0){
+        difficolta = difficolta/count;
+    } else {
+        difficolta = Math.random()*5;
+    }
+    let difficoltafalsa = Math.round(difficolta);
+    for (let i = 0; i < 5; i++) {
+        if (i< difficoltafalsa) {
+            let star = document.createElement("i");
+            star.classList.add("bi", "bi-star-fill");
+            valutazionedifficolta.appendChild(star);
+        } else {
+            let star = document.createElement("i");
+            star.classList.add("bi", "bi-star");
+            valutazionedifficolta.appendChild(star);
+        };
+    };
     title.appendChild(valutazione);
+    title.appendChild(valutazionedifficolta);
+    valutazionedifficolta.innerHTML += " ("+difficolta.toFixed(1)+")";
+    
+    title.appendChild(valutazionedifficolta);
     let img = document.getElementById("img");
     //Create an img element and put the image inside it
     let image = document.createElement("img");
@@ -116,6 +147,9 @@ async function getRicetta() {
     let numberofrecensioni = 0;
     array_recensioni.forEach(recensione => {
         if(recensione.idRicetta == id){
+            if (recensione.difficolta == null) {
+                recensione.difficolta = 0;
+            }
             let div = document.createElement("div");
             
             div.classList.add("border", "border-dark", "rounded", "p-3","col-3","recensione","d-inline-block","justify-content-center");
@@ -123,6 +157,7 @@ async function getRicetta() {
             h5.innerText = recensione.titolo;
             div.appendChild(h5);
             let voto = document.createElement("p");
+            voto.innerHTML = "<b>Gusto: </b>";
             for (let i = 0; i < 5; i++) {
                 if (i< recensione.voto) {
                     let star = document.createElement("i");
@@ -135,6 +170,21 @@ async function getRicetta() {
                 };
             };
             div.appendChild(voto);
+            let difficolta = document.createElement("p");
+            difficolta.innerHTML = "<b>Difficoltà: </b>";
+            for (let i = 0; i < 5; i++) {
+                if (i< recensione.difficolta) {
+                    console.log(recensione.difficolta);
+                    let star = document.createElement("i");
+                    star.classList.add("bi", "bi-star-fill");
+                    difficolta.appendChild(star);
+                } else {
+                    let star = document.createElement("i");
+                    star.classList.add("bi", "bi-star");
+                    difficolta.appendChild(star);
+                };
+            };
+            div.appendChild(difficolta);
             let p = document.createElement("p");
             p.innerText = recensione.testo;
             div.appendChild(p);
@@ -157,7 +207,8 @@ async function getRicetta() {
 function addRecensione(){
     
     let titolo = document.getElementById("titolorecensione").value;
-    let voto = document.getElementById("rating").value;
+    let voto = document.getElementById("gusto").value;
+    let difficolta = document.getElementById("difficolta").value;
     let testo = document.getElementById("testo").value;
     let id = localStorage.getItem("id");
     let username = localStorage.getItem("LoggedUser");
@@ -166,9 +217,9 @@ function addRecensione(){
         "username": username,
         "titolo": titolo,
         "testo": testo,
-        "voto": voto
+        "voto": voto,
+        "difficolta": difficolta
     };
-    console.log(recensione);
     
     let array_recensioni = JSON.parse(localStorage.getItem("Recensioni"));
     array_recensioni.push(recensione);
