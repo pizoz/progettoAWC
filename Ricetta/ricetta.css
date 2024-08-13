@@ -24,7 +24,8 @@ body {
 }
 
 #login,#profilo {
-    font-size: large
+    font-size: large;
+    text-wrap: nowrap;
 }
 .col-4 {
     /* background-color: lightblue; */

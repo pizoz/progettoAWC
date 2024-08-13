@@ -73,18 +73,18 @@
                                 var loginLink = document.getElementById("login"); // Declare the loginLink variable
                                 console.log(logged);
                             if ( logged == "true") {
-                                profileLink.innerText = localStorage.getItem("LoggedUser");
+                                profileLink.innerHTML = "<i class='bi bi-person'></i>"+" "+localStorage.getItem("LoggedUser");
                                 profileLink.href = "../Profile/profile.html";
-                                loginLink.innerText = "Logout";
+                                loginLink.innerHTML = "<i class='bi bi-box-arrow-right'></i>"+" Logout";
                                 loginLink.href = window.location.href;
                                 loginLink.onclick = function() {
                                     localStorage.setItem("logged", "false");
                                     localStorage.setItem("LoggedUser", ""); 
                                 };
                             } else {
-                                profileLink.innerText = "Registrati";
+                                profileLink.innerHTML = "<i class='bi bi-pencil'></i> Registrati";
                                 profileLink.href = "../Signup/signup.html";
-                                loginLink.innerText = "Login";
+                                loginLink.innerHTML = "<i class='bi bi-box-arrow-in-right'></i> Login";
                                 loginLink.href = "../login/login.html";
                             }
                             });
