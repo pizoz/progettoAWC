@@ -34,8 +34,8 @@ async function fetchAllMeals() {
             "username": username,
             "titolo": titolo,
             "testo": testo,
-            "voto": voto,
-            "difficolta": difficolta
+            "voto": voto.toString(),
+            "difficolta": difficolta.toString()
         };
         recensioni.push(recensione);
         console.log(recensione);
