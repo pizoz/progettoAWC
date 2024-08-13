@@ -19,8 +19,6 @@ async function immagini_carosello() {
 async function crea_carosello() {
     localStorage.setItem("oldPage", window.location.href);
     let meals = await immagini_carosello();
-    console.log(meals);
-    console.log(Object.keys(meals))
     let carosello = document.getElementById("valori");
     if (!carosello) {
         console.error("Element with id 'valori' not found.");
@@ -90,7 +88,6 @@ async function crea_carosello() {
                     valutazione.appendChild(star);
                 };
             };
-            valutazione.innerHTML += " (" + mediavera.toFixed(1) + ")";
             cardBody.appendChild(valutazione);
 
             let valutazionedifficolta = document.createElement("p");
@@ -106,7 +103,6 @@ async function crea_carosello() {
                     valutazionedifficolta.appendChild(star);
                 };
             };
-            valutazionedifficolta.innerHTML += " (" + difficolta.toFixed(1) + ")";
             cardBody.appendChild(valutazionedifficolta);
 
             let link = document.createElement("a");
@@ -136,4 +132,5 @@ async function ricettarandom() {
 function body() {
     crea_carosello();
     ricettarandom();
+    console.log(localStorage.getItem("RegisteredUsers"));
 }

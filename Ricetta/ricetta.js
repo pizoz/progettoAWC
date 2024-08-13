@@ -33,8 +33,6 @@ async function getRicetta() {
     });
     if(count != 0){
         media = media/count;
-    } else {
-        media = Math.random()*5;
     }
     let mediafalsa = Math.round(media);
     valutazione.innerHTML = "<b>Gusto: </b>";
@@ -62,12 +60,8 @@ async function getRicetta() {
             count++;
         }
     });
-    console.log(difficolta);
-    console.log(count);
     if(count != 0){
         difficolta = difficolta/count;
-    } else {
-        difficolta = Math.random()*5;
     }
     let difficoltafalsa = Math.round(difficolta);
     for (let i = 0; i < 5; i++) {

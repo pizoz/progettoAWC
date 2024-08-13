@@ -28,7 +28,7 @@ function signup() {
     };
     console.log(user);
     users.push(user);
-    localStorage.setItem("Users", JSON.stringify(users));
+    localStorage.setItem("RegisteredUsers", JSON.stringify(users));
     localStorage.setItem("LoggedUser", username);
     localStorage.setItem("logged", "true");
     window.location.href = localStorage.getItem("oldPage");

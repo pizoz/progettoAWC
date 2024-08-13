@@ -1,0 +1,73 @@
+body {
+    background-color: rgb(255, 244, 229);
+    font-family: "Nunito Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: rgb(65, 44, 3);
+}
+#navbar {
+    background-color: rgb(220, 215, 200);
+}
+#loginform {
+    border: 2px solid rgb(65, 44, 3);
+    padding-bottom: 1vh;
+    margin-top: 5vh;
+    background-color: rgb(220, 215, 200);
+    border-radius: 10px;
+}
+#logo {    
+    text-align: center;
+}
+h1 {
+    text-align: center;
+}
+
+#BoxProfilo, #formModifica {
+    border: 2px solid rgb(65, 44, 3);
+    padding-bottom: 1vh;
+    padding-left: 3vh;
+    margin-top: 5vh;
+    background-color: rgb(220, 215, 200);
+    border-radius: 10px;
+}
+#modifica {
+    background-color: rgb(255, 244, 229);
+    color: rgb(65, 44, 3);
+    border-color: rgb(65, 44, 3);
+}
+#modifica:hover {
+    background-color: rgb(65, 44, 3);
+    color: rgb(255, 244, 229);
+}
+#modifica:active {
+    background-color: rgb(65, 44, 3) !important; 
+    color: rgb(255, 244, 229) !important;
+    border-color: rgb(65, 44, 3) !important;
+}
+#elimina {
+    background-color: rgb(65, 44, 3);
+    color: rgb(255, 244, 229);
+    border-color: rgb(65, 44, 3);
+}
+#elimina:hover, #elimina:active {
+    background-color: rgb(255, 244, 229);
+    color: rgb(65, 44, 3);
+    border-color: rgb(65, 44, 3);
+}
+a {
+    color: rgb(65, 44, 3);
+}
+.btn {
+    background-color: rgb(255, 244, 229);
+    color: rgb(65, 44, 3);
+    border-color: rgb(65, 44, 3);
+}
+.btn:hover {
+    background-color: rgb(65, 44, 3);
+    color: rgb(255, 244, 229);
+}
+.btn:active {
+    background-color: rgb(65, 44, 3) !important; 
+    color: rgb(255, 244, 229) !important;
+    border-color: rgb(65, 44, 3) !important;
+}

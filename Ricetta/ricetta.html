@@ -77,7 +77,7 @@
                                 console.log(logged);
                             if ( logged == "true") {
                                 profileLink.innerText = localStorage.getItem("LoggedUser");
-                                profileLink.href = "profilo.html";
+                                profileLink.href = "../Profile/profile.html";
                                 loginLink.innerText = "Logout";
                                 loginLink.href = window.location.href;
                                 loginLink.onclick = function() {
@@ -164,7 +164,7 @@
                             <textarea class="form-control" id="testo" name="testo" required></textarea>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Invia</button> <!--bug ricaricamento modulo-->
+                            <button type="submit" class="btn btn-primary">Invia</button>
                         </div>
                     </form>
                 </div>
@@ -284,9 +284,6 @@
                 star.addEventListener("mouseover", mouseOverHandler);
                 star.addEventListener("mouseout", mouseOutHandler);
             });
-        });
-        document.addEventListener("DOMContentLoaded", function() {
-            
         });
     </script>
 </body>

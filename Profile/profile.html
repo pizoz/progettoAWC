@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="profile.css" />
+        <script src="profile.js"></script>
+        <!-- Option 1: Include in HTML -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    </head>
+
+    <body onload="stampa()">
+        <header>
+            <div class="container">
+                <div class="row" id="navbar">
+                    <nav class="navbar navbar-expand-lg">
+                        <div class="col-4 col-lg-4" id="logo">
+                            <a href="..\Homepage\homepage.html" class="navbar-brand">
+                                <img src="..\img\logo_firma.png" alt="logo" height="40" />
+                            </a>
+                        </div>
+                        <div class="col-4">
+
+                        </div>
+                        <div class="col-4">
+                            
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+
+                    </div>
+                    <div class="col m-5 p-5" id="BoxProfilo">
+                        <h1>Profilo</h1>
+                        <p id="username"><strong>Username:</strong></p>
+                        <p id="email"><strong>Email:</strong></p>
+                        <p id="nome"><strong>Nome:</strong></p>
+                        <p id="cognome"><strong>Cognome:</strong></p>
+                        <p id="datanascita"><strong>Data di nascita:</strong></p>
+                        <div class="row">
+                            <div class="col">
+                                <p id="password"><strong>Password:</strong></p>
+                            </div>
+                            <div class="col d-flex justify-content-end ">
+                                <a role="button" id="link" onclick="showPassword()"><i class="bi bi-eye-fill" id="occhio"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-11">
+                                <button class="btn btn-primary" id="modifica" onclick="showForm()">Modifica</button>
+                            </div>
+                            <div class="col-1 d-flex justify-content-end">
+                                <button class="btn btn-primary" id="elimina" onclick="eliminaProfilo()">Elimina</button>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col"  id="formModifica" style="display: none;">
+                        <h1 class="mt-3">Modifica Profilo</h1>
+                        <form onsubmit="event.preventDefault();modificaProfilo()">
+                            <div class="form-group">
+                                <div class="row p-2">
+                                    <div class="col">
+                                        <label class="align-content-center" for="username" id="label"><strong>Username</strong>:</label>
+                                        <script>
+                                            let label = document.getElementById("label");
+                                            label.innerHTML += " "+localStorage.getItem("LoggedUser");
+                                        </script>
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col d-inline-flex">
+                                        <label class="align-content-center" for="email"><strong>Email</strong>:</label>
+                                        <input type="email" class="form-control" id="emailform" name="email">
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col d-inline-flex">
+                                        <label class="align-content-center" for="nome"><strong>Nome</strong>:</label>
+                                        <input type="text" class="form-control" id="nomeform" name="nome">
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col d-inline-flex">
+                                        <label class="align-content-center" for="cognome"><strong>Cognome</strong>:</label>
+                                        <input type="text" class="form-control" id="cognomeform" name="cognome">
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col d-inline-flex">
+                                        <label class="align-content-center" for="datanascita"><strong>Data di nascita</strong>:</label>
+                                        <input type="date" class="form-control" id="datanascitaform" name="datanascita">
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col d-inline-flex">
+                                        <label class="align-content-center" for="password"><strong>Password</strong>:</label>
+                                        <input type="password" class="form-control" id="passwordform" name="password">
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col d-inline-flex">
+                                        <label class="align-content-center" for="confermaPassword"><strong>Conferma Password</strong>:</label>
+                                        <input type="password" class="form-control" id="confermaPasswordform" name="confermaPassword">
+                                    </div>
+                                </div>
+                                <div class="row p-2">
+                                    <div class="col-11">
+                                        <button type="submit" class="btn btn-primary">Salva</button>
+                                    </div>
+                                    <div class="col-1 d-flex justify-content-end">
+                                        <button class="btn btn-primary" id="back" onclick="hideForm()">Indietro</button>
+                                    </div>
+                                </div>
+                            </div>  
+                        </form>
+                    </div>
+                    <div class="col" id="ciao">
+                        
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
