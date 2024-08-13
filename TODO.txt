@@ -49,6 +49,7 @@
         titolo:
         testo:
         voto:
+        difficolta:
     }
 
     utenti -> array contenente frammenti JSON
