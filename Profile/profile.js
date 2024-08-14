@@ -182,8 +182,6 @@ async function getRicettario() {
         let data = await response.json();
         let meal = data.meals[0];
         
-        
-        
         let col = document.createElement("div");
         col.classList.add("col-md-4");
         let card = document.createElement("div");
@@ -260,7 +258,7 @@ async function getRicettario() {
         removebutton.classList.add("btn-primary");
         removebutton.id = "rimuovi";
         removebutton.innerHTML = "Rimuovi";
-        removebutton.onclick = function() {rimuoviRicetta(id)};
+        removebutton.setAttribute("onclick", "rimuoviRicetta("+id+")");
 
         cardBody.appendChild(title);
         cardBody.appendChild(descrizione);
