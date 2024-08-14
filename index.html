@@ -2,7 +2,7 @@
 <script>
   //Reset del sito, cancella tutti gli utenti registrati e il login
   localStorage.clear();
-  window.location.href = "./Homepage/homepage.html";
+  
   let users = [];
   users.push(
     {
@@ -55,8 +55,11 @@
   );
   localStorage.setItem('Recensioni', JSON.stringify(recensioni));
   
-    window.addEventListener('load', function() {
+    window.addEventListener('load',  async function() {
+      await generarecensioni();
+      window.location.href = "./Homepage/homepage.html";
     });
-  generarecensioni();
-  window.location.href = "./Homepage/homepage.html";
+  
+  
 </script>
+
