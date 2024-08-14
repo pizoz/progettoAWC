@@ -51,6 +51,7 @@ async function getRicetta() {
     valutazione.innerHTML += " ("+media.toFixed(1)+")";
 
     let valutazionedifficolta = document.createElement("p");
+    valutazionedifficolta.id = "valutazionedifficolta";
     valutazionedifficolta.innerHTML = "<b>Difficoltà: </b>";
     let difficolta = 0;
     count = 0;
@@ -78,6 +79,8 @@ async function getRicetta() {
     title.appendChild(valutazione);
     title.appendChild(valutazionedifficolta);
     valutazionedifficolta.innerHTML += " ("+difficolta.toFixed(1)+")";
+
+
     
     title.appendChild(valutazionedifficolta);
     let img = document.getElementById("img");
@@ -145,7 +148,7 @@ async function getRicetta() {
                 recensione.difficolta = 0;
             }
             let div = document.createElement("div");
-            
+            div.classList.add("col-lg-3","col-sm-12", "col-md-5","col-xs-12");
             div.classList.add("border", "border-dark", "rounded", "p-3","col-3","recensione","d-inline-block","justify-content-center");
             let h5 = document.createElement("h5");
             h5.innerText = recensione.titolo;
@@ -197,6 +200,7 @@ async function getRicetta() {
         p.innerText = "Ancora nessuna recensione per questa ricetta";
         recensioni.appendChild(p);
     }
+    setBottoni();
 }
 function addRecensione(){
     
@@ -230,6 +234,67 @@ function checklogin() {
 function setOldPage() {
     let logout = document.getElementById("logout");
     localStorage.setItem("oldPage", window.location.href);
+}
+
+function setBottoni() {
+    let logged = localStorage.getItem("logged");
+    if (logged == "false") {
+        return;
+    }
+    let user = localStorage.getItem("LoggedUser");
+    console.log(user);
+    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
+    console.log(ricettari);
+    let ricettario = ricettari.find(ricettario => ricettario.username == user);
+    console.log(ricettario);
+    let ricette = ricettario.ricette;
+    console.log(ricette);
+    let id = localStorage.getItem("id");
+    let ricetta = ricette.find(ricetta => ricetta.id == id);
+    let title = document.getElementById("title");
+    if (ricetta == undefined) {
+        let button = document.createElement("button");
+        button.id = "aggiungi";
+        button.classList.add("btn", "btn-primary");
+        button.innerText = "Aggiungi al ricettario";
+        button.onclick = function() {
+            addRicetta();
+        };
+        title.appendChild(button);
+    } else {
+        let button = document.createElement("button");
+        button.id = "rimuovi";
+        button.classList.add("btn", "btn-primary");
+        button.innerText = "Rimuovi dal ricettario";
+        button.onclick = function() {
+            removeRicetta();
+        };
+        title.appendChild(button);
+    }
+}
+ function addRicetta() {
+    let user = localStorage.getItem("LoggedUser");
+    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
+    let ricettario = ricettari.find(ricettario => ricettario.username == user);
+    let id = localStorage.getItem("id");
+    let ricetta = {
+        "id": id
+    };
+    ricettario.ricette.push(ricetta);
+    window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
+    window.location.reload();
+}
+function removeRicetta() {
+    let user = localStorage.getItem("LoggedUser");
+    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
+    let ricettario = ricettari.find(ricettario => ricettario.username == user);
+    let id = localStorage.getItem("id");
+    let ricette = ricettario.ricette;
+    let ricetta = ricette.find(ricetta => ricetta.id == id);
+    let index = ricette.indexOf(ricetta);
+    ricette.splice(index, 1);
+    window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
+    window.location.reload();
 }
 function body() {
     getRicetta();

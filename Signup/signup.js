@@ -24,7 +24,7 @@ function signup() {
         "email": email,
         "nome": nome,
         "cognome": cognome,
-        "datadinascita": datadinascita
+        "dataNascita": datanascita
     };
     console.log(user);
     users.push(user);

@@ -14,11 +14,8 @@ body {
 #searchbar {
     width: 45%;
 }
-#searchbutton{
-    color: black; border: 1px solid black;color: black; border: 1px solid black;
-    
-}
-#searchbutton:hover{
+
+.btn:hover{
     background-color: rgb(65, 44, 3);
     color: rgb(255, 244, 229);
 }
@@ -57,6 +54,7 @@ h5, h3 {
 .btn {
     background-color: rgb(240, 235, 220);
     color: black;
+    outline: none;
     border-color: black;
     align-self: flex-start;
 }
@@ -123,4 +121,14 @@ label {
 }
 .bi {
     margin: 1%;
+}
+#rimuovi {
+    background-color: rgb(65, 44, 3);
+    color: rgb(255, 244, 229);
+    border-color: rgb(65, 44, 3);
+}
+#rimuovi:hover, #rimuovi:active {
+    background-color: rgb(255, 244, 229);
+    color: rgb(65, 44, 3);
+    border-color: rgb(65, 44, 3);
 }
