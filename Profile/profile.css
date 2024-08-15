@@ -44,12 +44,12 @@ h1 {
     color: rgb(255, 244, 229) !important;
     border-color: rgb(65, 44, 3) !important;
 }
-#elimina,#rimuovi {
+#elimina,#visualizza,#rimuovi {
     background-color: rgb(65, 44, 3);
     color: rgb(255, 244, 229);
     border-color: rgb(65, 44, 3);
 }
-#elimina:hover, #elimina:active, #rimuovi:hover, #rimuovi:active {
+#elimina:hover, #elimina:active, #rimuovi:hover, #rimuovi:active, #visualizza:hover, #visualizza:active {
     background-color: rgb(255, 244, 229);
     color: rgb(65, 44, 3);
     border-color: rgb(65, 44, 3);
@@ -88,13 +88,12 @@ footer a {
 .card-body {
     display: flex;
     flex-direction: column;
-    
 }
 .card-title {
     margin-bottom: 1rem; /* Add some space below the title */
 }
 .bg-custom-1 {
-    background-color: rgb(220, 215, 200); /* Set the background color for the cards */
+    background-color: rgb(240, 235, 220); /* Set a lighter background color for the cards */
     border: 2px solid rgb(65, 44, 3);
     margin: 1vh;
 }

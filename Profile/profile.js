@@ -171,12 +171,15 @@ async function getRicettario() {
     let user = localStorage.getItem("LoggedUser");
     let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
     let ricettario = ricettari.find(ricettario => ricettario.username == user);
+    console.log(ricettario);
     let ricette = ricettario.ricette;
     let box = document.getElementById("BoxRicettario");
     let row = document.getElementById("riga");
     for (let i = 0; i < ricette.length; i++) {
         let ricetta = ricette[i];
         let id = ricetta.id;
+        let nota = ricetta.nota;
+        console.log(nota);
         let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+id;
         let response = await fetch(url);
         let data = await response.json();
@@ -247,12 +250,18 @@ async function getRicettario() {
                 valutazionedifficolta.appendChild(star);
             };
         };
+        let notaElement = document.createElement("p");
+        if(nota != undefined && nota != "") {
+            notaElement.innerHTML = "<b>Nota</b>: "+nota;
+            ;
+        }
 
         let link = document.createElement("button");
         link.classList.add("btn");
         link.classList.add("btn-primary","mb-2");
         link.innerHTML = "Visualizza";
-        link.href = "../Ricetta/ricetta.html?id="+ricetta;
+        link.id = "visualizza";
+        link.setAttribute("onclick","window.location.href='../Ricetta/ricetta.html?id="+id+"'");
         let removebutton = document.createElement("button");
         removebutton.classList.add("btn");
         removebutton.classList.add("btn-primary");
@@ -264,7 +273,7 @@ async function getRicettario() {
         cardBody.appendChild(descrizione);
         cardBody.appendChild(valutazione);
         cardBody.appendChild(valutazionedifficolta);
-
+        cardBody.appendChild(notaElement)
         cardBody.appendChild(link);
         cardBody.appendChild(removebutton);
         card.appendChild(img);
@@ -279,12 +288,33 @@ async function getRicettario() {
 function rimuoviRicetta(id) {
     // Rimuove la ricetta dal ricettario
     let user = localStorage.getItem("LoggedUser");
-    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
-    let ricettario = ricettari.find(ricettario => ricettario.username == user);
-    let ricette = ricettario.ricette;
-    let ricetta = ricette.find(ricetta => ricetta.id == id);
-    ricette.pop(ricetta);
-    ricettario.ricette = ricette;
-    localStorage.setItem("Ricettari", JSON.stringify(ricettari));
-    window.location.reload();
+    if (user) {
+        let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
+        if (ricettari) {
+            let ricettario = ricettari.find(ricettario => ricettario.username == user);
+            if (ricettario) {
+                let ricette = ricettario.ricette;
+                if (ricette) {
+                    let ricettaIndex = ricette.findIndex(ricetta => ricetta.id == id);
+                    if (ricettaIndex !== -1) {
+                        ricette.splice(ricettaIndex, 1);
+                        ricettario.ricette = ricette;
+                        localStorage.setItem("Ricettari", JSON.stringify(ricettari));
+                        window.location.reload();
+                    } else {
+                        console.error("Ricetta not found");
+                    }
+                } else {
+                    console.error("Ricette not found");
+                }
+            } else {
+                console.error("Ricettario not found");
+            }
+        } else {
+            console.error("Ricettari not found");
+        }
+    } else {
+        console.error("User not logged in");
+    }
+
 }

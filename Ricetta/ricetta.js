@@ -3,6 +3,7 @@ async function getRicetta() {
     //salvo l'id dell'ultima ricetta caricata
     let id = window.location.href.split("id=")[1];
     localStorage.setItem("id", id);
+    console.log(id);
     //ricavo le informazioni della ricetta
     let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+id;
     let response = await fetch(url);
@@ -255,7 +256,7 @@ function setBottoni() {
     if (ricetta == undefined) {
         let button = document.createElement("button");
         button.id = "aggiungi";
-        button.classList.add("btn", "btn-primary");
+        button.classList.add("btn", "btn-primary","mb-2");
         button.innerText = "Aggiungi al ricettario";
         button.onclick = function() {
             addRicetta();
@@ -264,21 +265,30 @@ function setBottoni() {
     } else {
         let button = document.createElement("button");
         button.id = "rimuovi";
-        button.classList.add("btn", "btn-primary");
+        button.classList.add("btn", "btn-primary","mb-2");
         button.innerText = "Rimuovi dal ricettario";
         button.onclick = function() {
             removeRicetta();
         };
         title.appendChild(button);
+        let button2 = document.createElement("button");
+        button2.id = "shownota";
+        button2.classList.add("btn", "btn-primary",);
+        button2.innerText = "Aggiungi nota";
+        button2.onclick = function() {
+            showformNota();
+        };
+        title.appendChild(button2);
     }
 }
- function addRicetta() {
+function addRicetta() {
     let user = localStorage.getItem("LoggedUser");
     let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
     let ricettario = ricettari.find(ricettario => ricettario.username == user);
     let id = localStorage.getItem("id");
     let ricetta = {
-        "id": id
+        "id": id,
+        "nota": ""
     };
     ricettario.ricette.push(ricetta);
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
@@ -295,6 +305,39 @@ function removeRicetta() {
     ricette.splice(index, 1);
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     window.location.reload();
+}
+function showformNota() {
+    let title = document.getElementById("title");
+    let form = document.createElement("form");
+    form.id = "formNota";
+    form.setAttribute("onsubmit", "addNota()");
+    let nota = document.createElement("input");
+    nota.type = "text";
+    nota.id = "nota";
+    nota.placeholder = "Inserisci la nota";
+    form.appendChild(nota);
+    let button = document.createElement("button");
+    button.id = "inviaNota";
+    button.classList.add("btn", "btn-primary","m-1");
+    button.innerText = "Invia";
+    button.type = "submit";
+    form.appendChild(button);
+    title.appendChild(form);
+    let button2 = document.getElementById("shownota");
+    button2.style.display = "none";
+}
+// NON FUNZIONA RELOAD NOTA
+function addNota() {
+    let user = localStorage.getItem("LoggedUser");
+    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
+    let ricettario = ricettari.find(ricettario => ricettario.username == user);
+    let id = url.searchParams.get("id");
+    let ricette = ricettario.ricette;
+    let ricetta = ricette.find(ricetta => ricetta.id == id);
+    let notaElement = document.getElementById("nota");
+    let nota = notaElement.value;
+    ricetta.nota = nota;
+    window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
 }
 function body() {
     getRicetta();

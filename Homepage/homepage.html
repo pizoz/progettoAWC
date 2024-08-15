@@ -71,7 +71,6 @@
                                 var logged = localStorage.getItem("logged");
                                 var profileLink = document.getElementById("profilo");
                                 var loginLink = document.getElementById("login"); // Declare the loginLink variable
-                                console.log(logged);
                             if ( logged == "true") {
                                 profileLink.innerHTML = "<i class='bi bi-person'></i>"+" "+localStorage.getItem("LoggedUser");
                                 profileLink.href = "../Profile/profile.html";

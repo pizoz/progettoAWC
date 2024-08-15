@@ -17,7 +17,6 @@ async function immagini_carosello() {
 }
 
 async function crea_carosello() {
-    console.log(localStorage.getItem("Recensioni"))
     localStorage.setItem("oldPage", window.location.href);
     let meals = await immagini_carosello();
     let carosello = document.getElementById("valori");
@@ -133,5 +132,4 @@ async function ricettarandom() {
 function body() {
     crea_carosello();
     ricettarandom();
-    console.log(localStorage.getItem("RegisteredUsers"));
 }
