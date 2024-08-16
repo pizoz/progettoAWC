@@ -310,7 +310,7 @@ function showformNota() {
     let title = document.getElementById("title");
     let form = document.createElement("form");
     form.id = "formNota";
-    form.setAttribute("onsubmit", "addNota()");
+    form.setAttribute("onsubmit", "event.preventDefault();addNota()");
     let nota = document.createElement("input");
     nota.type = "text";
     nota.id = "nota";
@@ -326,18 +326,19 @@ function showformNota() {
     let button2 = document.getElementById("shownota");
     button2.style.display = "none";
 }
-// NON FUNZIONA RELOAD NOTA
+// NON FUNZIONA
 function addNota() {
     let user = localStorage.getItem("LoggedUser");
     let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
     let ricettario = ricettari.find(ricettario => ricettario.username == user);
-    let id = url.searchParams.get("id");
+    let id = localStorage.getItem("id");
     let ricette = ricettario.ricette;
     let ricetta = ricette.find(ricetta => ricetta.id == id);
     let notaElement = document.getElementById("nota");
     let nota = notaElement.value;
     ricetta.nota = nota;
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
+    window.location.reload();
 }
 function body() {
     getRicetta();
