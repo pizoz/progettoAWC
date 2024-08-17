@@ -15,6 +15,7 @@ async function fetchAllMeals() {
           allMeals[meal.idMeal] = meal;
        });
     }
+    localStorage.setItem("Meals", JSON.stringify(allMeals));
     return allMeals;
  }
 
@@ -25,12 +26,12 @@ async function fetchAllMeals() {
    let recensioni = JSON.parse(localStorage.getItem("Recensioni")) || [];  
    
    Object.keys(meals).forEach(meal => {
-       for (let i = 0; i <10; i++) {
+       for (let i = 0; i <2; i++) {
          let username = "admin";
          let titolo = "titolo";
          let testo = "testo";
-         let voto = Math.floor(Math.random() * 5);  
-         let difficolta = Math.floor(Math.random() * 5);  
+         let voto = Math.floor(Math.random() * 5)+1;  
+         let difficolta = Math.floor(Math.random() * 5)+1;  
          let recensione = {
             "idRicetta": meal,
             "username": username,

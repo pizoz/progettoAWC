@@ -24,8 +24,15 @@ function signup() {
         "email": email,
         "nome": nome,
         "cognome": cognome,
-        "dataNascita": datanascita
+        "dataNascita": datadinascita
     };
+    let ricettario = {
+        "username": username,
+        "ricette": []
+    }
+    let ricettari = JSON.parse(localStorage.getItem("Ricettari")) || [];
+    ricettari.push(ricettario);
+    localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     console.log(user);
     users.push(user);
     localStorage.setItem("RegisteredUsers", JSON.stringify(users));

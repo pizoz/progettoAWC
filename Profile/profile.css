@@ -15,14 +15,18 @@ body {
     background-color: rgb(220, 215, 200);
     border-radius: 10px;
 }
-#logo {    
+#divlogo {    
     text-align: center;
+}
+#logo {
+    width: 80%;
+    height: auto;
 }
 h1 {
     text-align: center;
 }
 
-#BoxProfilo, #formModifica, #BoxRicettario {
+#BoxProfilo, #formModifica, #BoxRicettario, #recensioni {
     border: 2px solid rgb(65, 44, 3);
     padding-bottom: 1vh;
     padding-left: 3vh;

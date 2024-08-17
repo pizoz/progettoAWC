@@ -118,22 +118,27 @@ async function getRicetta() {
     p.innerText = meal["strInstructions"];
     instructions.appendChild(p);
     //Create a youtube video preview with the link found in the API
-    let video = document.getElementById("video");
-    video.style.alignContent = "center";
-    let h3_3 = document.createElement("h3");
-    h3_3.innerText = "Tutorial";
-    h3_3.style.textAlign = "center";
-    h3_3.classList.add("m-2");
-    video.appendChild(h3_3);
-    let iframe = document.createElement("iframe");
-    //i want the instructions preview to be centered, i want it height and width to be the same ratio as the instructions and relative to the screen
-    iframe.style.width = "50vw";
-    iframe.style.height = "29vw";
-    iframe.style.alignContent = "center";
-    iframe.style.margin = "auto";
-    iframe.style.display = "block";
-    iframe.src = meal["strYoutube"].replace("watch?v=", "embed/");
-    video.appendChild(iframe);
+    if (meal["strYoutube"] != "") {
+        let video = document.getElementById("video");
+        video.style.alignContent = "center";
+        let h3_3 = document.createElement("h3");
+        h3_3.innerText = "Tutorial";
+        h3_3.style.textAlign = "center";
+        h3_3.classList.add("m-2");
+        video.appendChild(h3_3);
+        let iframe = document.createElement("iframe");
+        //i want the instructions preview to be centered, i want it height and width to be the same ratio as the instructions and relative to the screen
+        iframe.style.width = "50vw";
+        iframe.style.height = "29vw";
+        iframe.style.alignContent = "center";
+        iframe.style.margin = "auto";
+        iframe.style.display = "block";
+        iframe.src = meal["strYoutube"].replace("watch?v=", "embed/");
+        video.appendChild(iframe);
+    } else {
+        let video = document.getElementById("rowvideo");
+        video.style.display = "none";
+    }
     let recensioni = document.getElementById("recensioni");
     //Create an h3 element and put text inside it
     let h3_4 = document.createElement("h3");
@@ -326,7 +331,6 @@ function showformNota() {
     let button2 = document.getElementById("shownota");
     button2.style.display = "none";
 }
-// NON FUNZIONA
 function addNota() {
     let user = localStorage.getItem("LoggedUser");
     let ricettari = JSON.parse(localStorage.getItem("Ricettari"));

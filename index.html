@@ -2,7 +2,6 @@
 <script>
   //Reset del sito, cancella tutti gli utenti registrati e il login
   localStorage.clear();
-  
   let users = [];
   users.push(
     {
@@ -25,43 +24,42 @@
   localStorage.setItem('RegisteredUsers', JSON.stringify(users));
   localStorage.setItem('LoggedUser',"");
   let recensioni = [];
-  recensioni.push(
-    {
-      "idRicetta": "52826",
-      "username": "admin",
-      "titolo": "Buonissimo",
-      "testo": "Molto buono, lo rifarò sicuramente",
-      "voto": "5",
-      "difficolta": "1"
-    },
-    {
-      "idRicetta": "52826",
-      "username": "admin",
-      "titolo": "Da provare",
-      "testo": "Molto buono, lo rifarò sicuramente",
-      "voto": "4",
-      "difficolta": "2"
-    },
-    {
-      "idRicetta": "52826",
-      "username": "admin",
-      "titolo": "Non mi è piaciuto",
-      "testo": "Non mi è piaciuto per niente",
-      "voto": "1",
-      "difficolta": "3"
+  // recensioni.push(
+  //   {
+  //     "idRicetta": "52826",
+  //     "username": "admin",
+  //     "titolo": "Buonissimo",
+  //     "testo": "Molto buono, lo rifarò sicuramente",
+  //     "voto": "5",
+  //     "difficolta": "1"
+  //   },
+  //   {
+  //     "idRicetta": "52826",
+  //     "username": "admin",
+  //     "titolo": "Da provare",
+  //     "testo": "Molto buono, lo rifarò sicuramente",
+  //     "voto": "4",
+  //     "difficolta": "2"
+  //   },
+  //   {
+  //     "idRicetta": "52826",
+  //     "username": "admin",
+  //     "titolo": "Non mi è piaciuto",
+  //     "testo": "Non mi è piaciuto per niente",
+  //     "voto": "1",
+  //     "difficolta": "3"
 
-    },
-    {
-      "idRicetta": "52826",
-      "username": "admin",
-      "titolo": "Meh",
-      "testo": "Non mi è piaciuto",
-      "voto": "2",
-      "difficolta": "4"
-    }
-  );
+  //   },
+  //   {
+  //     "idRicetta": "52826",
+  //     "username": "admin",
+  //     "titolo": "Meh",
+  //     "testo": "Non mi è piaciuto",
+  //     "voto": "2",
+  //     "difficolta": "4"
+  //   }
+  // );
   localStorage.setItem('Recensioni', JSON.stringify(recensioni));
-  
     window.addEventListener('load',  async function() {
       await generarecensioni();
       window.location.href = "./Homepage/homepage.html";

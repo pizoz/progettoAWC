@@ -105,7 +105,7 @@ footer a {
     text-justify:auto;
 }
 #copertina {
-    height: 20vw;
+    height: 25vw;
     width: auto;
 }
 .recensione {
@@ -131,4 +131,8 @@ label {
     background-color: rgb(255, 244, 229);
     color: rgb(65, 44, 3);
     border-color: rgb(65, 44, 3);
+}
+#recensioni {
+    display: flex !important;
+    justify-content: space-between !important;
 }

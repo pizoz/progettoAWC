@@ -175,6 +175,13 @@ async function getRicettario() {
     let ricette = ricettario.ricette;
     let box = document.getElementById("BoxRicettario");
     let row = document.getElementById("riga");
+    row.setAttribute("style", "display: flex !important; justify-content: space-between !important;");
+    if (ricette.length == 0) {
+        let noRicette = document.createElement("h3");
+        noRicette.classList.add("text-center","mb-5");
+        noRicette.innerHTML = "Non hai ancora aggiunto ricette al tuo ricettario";
+        box.appendChild(noRicette);
+    }
     for (let i = 0; i < ricette.length; i++) {
         let ricetta = ricette[i];
         let id = ricetta.id;
@@ -280,8 +287,6 @@ async function getRicettario() {
         card.appendChild(cardBody);
         col.appendChild(card);
         row.appendChild(col);
-        
-        
     }
     
 }
@@ -317,4 +322,101 @@ function rimuoviRicetta(id) {
         console.error("User not logged in");
     }
 
+}
+
+async function getRecensioni() {
+    // Ricavo le recensioni dell'utente
+    let user = localStorage.getItem("LoggedUser");
+    let recensioni = JSON.parse(localStorage.getItem("Recensioni"));
+    let recensioniUtente = recensioni.filter(recensione => recensione.username == user);
+    console.log(recensioniUtente);
+    let box = document.getElementById("BoxRecensioni");
+    let row = document.getElementById("recensioniUtente");
+    row.setAttribute("style", "display: flex !important; justify-content: space-between !important;");
+    if (recensioniUtente.length == 0) {
+        let noRecensioni = document.createElement("h3");
+        noRecensioni.classList.add("text-center","mb-5");
+        noRecensioni.innerHTML = "Non hai ancora scritto recensioni";
+        box.appendChild(noRecensioni);
+    }
+    for (let i = 0; i < recensioniUtente.length; i++) {
+        let recensione = recensioniUtente[i];
+        let idRicetta = recensione.idRicetta;
+        let meals = JSON.parse(localStorage.getItem("Meals"));
+        let meal = meals[idRicetta];
+        let titolo = meal.strMeal;
+        let recensionetitolo = recensione.titolo;
+        let recensionevoto = recensione.voto;
+        let recensionedifficolta = recensione.difficolta;
+        let recensioneText = recensione.testo;
+        let col = document.createElement("div");
+        col.classList.add("col-md-4");
+        let card = document.createElement("div");
+        card.classList.add("card","bg-custom-1");
+        let cardBody = document.createElement("div");
+        cardBody.classList.add("card-body");
+        let title = document.createElement("h5");
+        title.classList.add("card-title");
+        title.innerHTML = "<strong>"+titolo+"</strong>";
+        let recensioneTitle = document.createElement("p");
+        recensioneTitle.innerHTML = "<strong>Titolo</strong>: "+recensionetitolo;
+        let valutazione = document.createElement("p");
+        valutazione.innerHTML = "<b>Gusto</b>: ";
+        for (let i = 0; i < 5; i++) {
+            if (i< recensionevoto) {
+                let star = document.createElement("i");
+                star.classList.add("bi", "bi-star-fill");
+                valutazione.appendChild(star);
+            } else {
+                let star = document.createElement("i");
+                star.classList.add("bi", "bi-star");
+                valutazione.appendChild(star);
+            };
+        };
+        let difficolta = document.createElement("p");
+        difficolta.innerHTML = "<b>Difficoltà</b>: ";
+        for (let i = 0; i < 5; i++) {
+            if (i< recensionedifficolta) {
+                let star = document.createElement("i");
+                star.classList.add("bi", "bi-star-fill");
+                difficolta.appendChild(star);
+            } else {
+                let star = document.createElement("i");
+                star.classList.add("bi", "bi-star");
+                difficolta.appendChild(star);
+            };
+        };
+
+        let recensioneElement = document.createElement("p");
+        recensioneElement.innerHTML = "<strong>Testo</strong>: "+recensioneText;
+        let removebutton = document.createElement("button");
+        removebutton.classList.add("btn");
+        removebutton.classList.add("btn-primary");
+        removebutton.id = "eliminarecensione";
+        removebutton.innerHTML = "Elimina";
+        removebutton.setAttribute("onclick", "eliminaRecensione("+JSON.stringify(recensione)+")");
+        removebutton.setAttribute("onclick", "eliminaRecensione('"+idRicetta+"', '"+recensionetitolo+"', '"+recensioneText+"', '"+recensione.username+"', "+recensionevoto+", "+recensionedifficolta+")");
+
+
+
+        cardBody.appendChild(title);
+        cardBody.appendChild(recensioneTitle);
+        cardBody.appendChild(valutazione);
+        cardBody.appendChild(difficolta);
+        cardBody.appendChild(recensioneElement);
+        cardBody.appendChild(removebutton);
+        card.appendChild(cardBody);
+        col.appendChild(card);
+        row.appendChild(col);
+    }
+}
+function eliminaRecensione(idRIcetta,titolo, testo, username, voto, difficolta) {
+    // Elimina la recensione
+
+    alert(idRIcetta, titolo, testo, username, voto, difficolta);
+    let recensioni = JSON.parse(localStorage.getItem("Recensioni"));
+    let index = recensioni.findIndex(recensione => recensione.idRicetta == idRIcetta && recensione.username == username && recensione.titolo == titolo && recensione.testo == testo && recensione.voto == voto && recensione.difficolta == difficolta);
+    recensioni.splice(index, 1);
+    localStorage.setItem("Recensioni", JSON.stringify(recensioni));
+    window.location.reload();
 }
