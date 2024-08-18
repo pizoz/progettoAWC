@@ -339,6 +339,9 @@ async function getRecensioni() {
         noRecensioni.innerHTML = "Non hai ancora scritto recensioni";
         box.appendChild(noRecensioni);
     }
+    if (recensioniUtente.length < 3) {
+        row.setAttribute("style", "display: flex !important; justify-content: flex-start !important;");
+    }
     for (let i = 0; i < recensioniUtente.length; i++) {
         let recensione = recensioniUtente[i];
         let idRicetta = recensione.idRicetta;

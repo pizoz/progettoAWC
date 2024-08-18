@@ -129,6 +129,15 @@ async function ricettarandom() {
     searchbar.setAttribute("placeholder",nome);
 }
 
+function search() {
+    let searchbar = document.getElementById("inputsearch");
+    let search = searchbar.value;
+    if (search === "") {
+        search = searchbar.placeholder;
+    }
+    window.location.href = "../Results/results.html?search=" + search;
+}
+
 function body() {
     crea_carosello();
     ricettarandom();
