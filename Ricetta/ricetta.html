@@ -23,21 +23,10 @@
                 <nav class="navbar navbar-expand-lg">
                     <div class="col-4 col-lg-4">
                         <a href="..\Homepage\homepage.html" class="navbar-brand">
-                            <img src="../img/logo2.png" alt="logo" height="40" id="logo"/>
+                            <img src="../img/SIDE_BABY__1_-removebg-preview (1).png" alt="logo" height="40" id="logo"/>
                         </a>
                     </div>
                     <div class="col-4 col-lg-4">
-                        <form class="d-flex">
-                            <input
-                                class="form-control me-2"
-                                type="search"
-                                placeholder="Cosa vuoi mangiare oggi?"
-                                aria-label="Search"
-                            />
-                            <button class="btn btn-outline-success" type="submit" id="searchbutton">
-                                Cerca
-                            </button>
-                        </form>
                     </div>
                     <div class="col-4 text-end d-lg-none">
                         <button
@@ -98,6 +87,29 @@
         </div>
     </header>
     <main>
+        <div class="container-fluid m-3">
+            <div class="row">
+                <div class="col-3">
+                </div>
+                <div class="col-6" id="searchbar">
+                    <h3 style="text-align: center;"> Cosa vuoi mangiare oggi?</h3>
+                    <form class="d-flex" onsubmit="event.preventDefault();search()">
+                        
+                        <input id="inputsearch"
+                            class="form-control me-2"
+                            type="search"
+                            aria-label="Search"
+                        />
+                        <button class="btn btn-outline-success" type="submit" id="searchbutton">
+                            Cerca
+                        </button>
+                    </form>
+                </div>
+                <div class="col-3" >
+                </div>
+            </div>
+        </div>
+
         <div class="container m-auto" >
             <div class="row align-items-center" id="titolo">
                 
@@ -192,10 +204,12 @@
             crossorigin="anonymous"
         ></script>
     <script>
+
         document.addEventListener("DOMContentLoaded", function() {
             var gusto = document.getElementById("gustoform");
             var stars = gusto.querySelectorAll(".bi-star");
             var rating = document.getElementById("gusto");
+            
             stars.forEach(function(star, index) {
                 star.addEventListener("click", function() {
                     rating.value = index + 1;
@@ -226,7 +240,10 @@
 
                 function mouseOutHandler() {
                     stars.forEach((s, i) => {
-                        if (s.classList.contains("bi-star-fill")) {
+                        if (i <= rating.value - 1) {
+                            s.classList.remove("bi-star");
+                            s.classList.add("bi-star-fill");
+                        } else {
                             s.classList.remove("bi-star-fill");
                             s.classList.add("bi-star");
                         }
@@ -269,8 +286,11 @@
                 }
 
                 function mouseOutHandler() {
-                    stars2.forEach((s, i) => {
-                        if (s.classList.contains("bi-star-fill")) {
+                    stars.forEach((s, i) => {
+                        if (i <= rating.value - 1) {
+                            s.classList.remove("bi-star");
+                            s.classList.add("bi-star-fill");
+                        } else {
                             s.classList.remove("bi-star-fill");
                             s.classList.add("bi-star");
                         }

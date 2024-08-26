@@ -352,6 +352,7 @@ async function getRecensioni() {
         let recensionevoto = recensione.voto;
         let recensionedifficolta = recensione.difficolta;
         let recensioneText = recensione.testo;
+        let recensionedata = recensione.data;
         let col = document.createElement("div");
         col.classList.add("col-md-4");
         let card = document.createElement("div");
@@ -364,6 +365,8 @@ async function getRecensioni() {
         let recensioneTitle = document.createElement("p");
         recensioneTitle.innerHTML = "<strong>Titolo</strong>: "+recensionetitolo;
         let valutazione = document.createElement("p");
+        let recensioneData = document.createElement("p");
+        recensioneData.innerHTML = "<strong>Data</strong>: "+recensionedata;
         valutazione.innerHTML = "<b>Gusto</b>: ";
         for (let i = 0; i < 5; i++) {
             if (i< recensionevoto) {
@@ -404,6 +407,7 @@ async function getRecensioni() {
 
         cardBody.appendChild(title);
         cardBody.appendChild(recensioneTitle);
+        cardBody.appendChild(recensioneData);
         cardBody.appendChild(valutazione);
         cardBody.appendChild(difficolta);
         cardBody.appendChild(recensioneElement);

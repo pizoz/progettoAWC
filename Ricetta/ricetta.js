@@ -193,7 +193,7 @@ async function getRicetta() {
             div.appendChild(p);
             recensioni.appendChild(div);
             let user = document.createElement("p");
-            user.innerText = "- "+recensione.username;
+            user.innerText = "- "+recensione.username+" il "+recensione.data;
             user.style.textAlign = "right";
             user.style.fontStyle = "italic";
             div.appendChild(user);
@@ -206,6 +206,9 @@ async function getRicetta() {
         p.innerText = "Ancora nessuna recensione per questa ricetta";
         recensioni.appendChild(p);
     }
+    if (numberofrecensioni < 3) {
+        recensioni.setAttribute("style", "justify-content: flex-start !important;");
+    }
     setBottoni();
 }
 function addRecensione(){
@@ -215,6 +218,8 @@ function addRecensione(){
     let difficolta = document.getElementById("difficolta").value;
     let testo = document.getElementById("testo").value;
     let id = localStorage.getItem("id");
+    let data = new Date();
+    data = data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
     let username = localStorage.getItem("LoggedUser");
     let recensione = {
         "idRicetta": id,
@@ -222,7 +227,8 @@ function addRecensione(){
         "titolo": titolo,
         "testo": testo,
         "voto": voto,
-        "difficolta": difficolta
+        "difficolta": difficolta,
+        "data": data
     };
     
     let array_recensioni = JSON.parse(localStorage.getItem("Recensioni"));
@@ -298,6 +304,14 @@ function addRicetta() {
     ricettario.ricette.push(ricetta);
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     window.location.reload();
+}
+function search() {
+    let searchbar = document.getElementById("inputsearch");
+    let search = searchbar.value;
+    if (search === "") {
+        search = searchbar.placeholder;
+    }
+    window.location.href = "../Results/results.html?search=" + search;
 }
 function removeRicetta() {
     let user = localStorage.getItem("LoggedUser");

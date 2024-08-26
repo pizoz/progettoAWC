@@ -27,7 +27,7 @@ async function getResults() {
     let resultsrow = document.getElementById("resultsrow");
     let results = document.getElementById("results");
     results.classList.add("display-flex");
-    results.setAttribute("style", "justify-content: space-around;");
+    results.setAttribute("style", "justify-content: flex-start;");
     if (meals === null) {
         let noresults = document.createElement("h1");
         noresults.innerText = "No results found";
@@ -37,6 +37,7 @@ async function getResults() {
             let meal = meals[i];
             let card = document.createElement("div");
             card.classList.add("card", "col-md-4", "col-12", "mb-3","col-sm-5","col-lg-3","col-xl-3");
+            card.setAttribute("style", "margin: ");
             let cardBody = document.createElement("div");
             cardBody.classList.add("card-body");
             let cardImg = document.createElement("img");
@@ -108,6 +109,9 @@ async function getResults() {
             results.appendChild(card);
 
         }
+    }
+    if (meals.length < 3) {
+        resultsrow.setAttribute("style", "justify-content: flex-start !important;");
     }
 }
 

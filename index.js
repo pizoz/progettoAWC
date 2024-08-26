@@ -31,14 +31,17 @@ async function fetchAllMeals() {
          let titolo = "titolo";
          let testo = "testo";
          let voto = Math.floor(Math.random() * 5)+1;  
-         let difficolta = Math.floor(Math.random() * 5)+1;  
+         let difficolta = Math.floor(Math.random() * 5)+1;
+         let data = new Date();
+         data = data.getDate() + "/" + (data.getMonth()+1) + "/" + data.getFullYear();
          let recensione = {
             "idRicetta": meal,
             "username": username,
             "titolo": titolo,
             "testo": testo,
             "voto": voto.toString(),
-            "difficolta": difficolta.toString()
+            "difficolta": difficolta.toString(),
+            "data": data
          };
          recensioni.push(recensione);
          }
