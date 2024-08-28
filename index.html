@@ -3,6 +3,7 @@
   //Reset del sito, cancella tutti gli utenti registrati e il login
   localStorage.clear();
   let users = [];
+  //Aggiungo l'utente admin
   users.push(
     {
     "username": "admin",
@@ -13,57 +14,26 @@
     "dataNascita": "2001-05-02"
   }
   );
+  // creo il ricettario per l'utente admin
   let ricettari = [];
   let ricettario = {
     "username": "admin",
     "ricette": []
   }
   ricettari.push(ricettario);
+  // Salvo ricettari, utenti e le info di login
   localStorage.setItem('Ricettari', JSON.stringify(ricettari));
   localStorage.setItem("logged", "false");
   localStorage.setItem('RegisteredUsers', JSON.stringify(users));
   localStorage.setItem('LoggedUser',"");
   let recensioni = [];
-  // recensioni.push(
-  //   {
-  //     "idRicetta": "52826",
-  //     "username": "admin",
-  //     "titolo": "Buonissimo",
-  //     "testo": "Molto buono, lo rifarò sicuramente",
-  //     "voto": "5",
-  //     "difficolta": "1"
-  //   },
-  //   {
-  //     "idRicetta": "52826",
-  //     "username": "admin",
-  //     "titolo": "Da provare",
-  //     "testo": "Molto buono, lo rifarò sicuramente",
-  //     "voto": "4",
-  //     "difficolta": "2"
-  //   },
-  //   {
-  //     "idRicetta": "52826",
-  //     "username": "admin",
-  //     "titolo": "Non mi è piaciuto",
-  //     "testo": "Non mi è piaciuto per niente",
-  //     "voto": "1",
-  //     "difficolta": "3"
 
-  //   },
-  //   {
-  //     "idRicetta": "52826",
-  //     "username": "admin",
-  //     "titolo": "Meh",
-  //     "testo": "Non mi è piaciuto",
-  //     "voto": "2",
-  //     "difficolta": "4"
-  //   }
-  // );
   localStorage.setItem('Recensioni', JSON.stringify(recensioni));
-    window.addEventListener('load',  async function() {
-      await generarecensioni();
-      window.location.href = "./Homepage/homepage.html";
-    });
+  // al caricamento della pagina genero le recensioni e reindirizzo alla homepage
+  window.addEventListener('load',  async function() {
+    await generarecensioni();
+    window.location.href = "./Homepage/homepage.html";
+  });
   
   
 </script>

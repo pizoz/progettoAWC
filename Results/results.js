@@ -1,4 +1,5 @@
 const URL = "https://www.themealdb.com/api/json/v1/1/random.php"
+// funzione di ricerca della barra
 function search() {
     let searchbar = document.getElementById("inputsearch");
     let search = searchbar.value;
@@ -7,6 +8,7 @@ function search() {
     }
     window.location.href = "../Results/results.html?search=" + search;
 }
+//funzione per settare una ricetta random come suggerimento nella barra di ricerca
 async function ricettarandom() {
     let ricetta = await fetch(URL);
     let data = await ricetta.json();
@@ -15,24 +17,26 @@ async function ricettarandom() {
     let searchbar = document.getElementById("inputsearch");
     searchbar.setAttribute("placeholder",nome);
 }
-
+// funzione per stampare tutte le ricette ricevute tramite l'ultima ricerca
 async function getResults() {
+    //utilizzo la ricerca passata per utilizzare l'api
     let search = new URLSearchParams(window.location.search).get("search");
     let URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + search;
     let response = await fetch(URL);
     let data = await response.json();
     let meals = data.meals;
-    let recensioni = JSON.parse(localStorage.getItem("Recensioni"));
-    let recensione;;
+    let recensione;
     let resultsrow = document.getElementById("resultsrow");
     let results = document.getElementById("results");
     results.classList.add("display-flex");
     results.setAttribute("style", "justify-content: flex-start;");
+    // se non ci sono risultati stampo a video
     if (meals === null) {
         let noresults = document.createElement("h1");
         noresults.innerText = "No results found";
         resultsrow.appendChild(noresults);
     } else {
+        // altrimenti stampo tutte le ricette che sono state trovate
         for (let i = 0; i < meals.length; i++) {
             let meal = meals[i];
             let card = document.createElement("div");
@@ -84,7 +88,6 @@ async function getResults() {
                 };
             };
             
-    
             let valutazionedifficolta = document.createElement("p");
             valutazionedifficolta.innerHTML = "<b>Difficoltà</b>: ";
             for (let i = 0; i < 5; i++) {
@@ -110,15 +113,11 @@ async function getResults() {
 
         }
     }
+    // se le recensioni sono meno di 3 voglio che stiano a sinistra
     if (meals.length < 3) {
         resultsrow.setAttribute("style", "justify-content: flex-start !important;");
     }
 }
-
-
-
-
-
 
 function body() {
     localStorage.setItem("oldPage", window.location.href);

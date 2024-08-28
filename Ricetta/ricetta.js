@@ -1,27 +1,28 @@
+//funzione per stampare le informazioni relative alla ricetta selezionata
 async function getRicetta() {
+    //setto la pagina in cui siamo come l'ultima in cui siamo stati
     localStorage.setItem("oldPage", window.location.href);
     //salvo l'id dell'ultima ricetta caricata
     let id = window.location.href.split("id=")[1];
     localStorage.setItem("id", id);
-    console.log(id);
     //ricavo le informazioni della ricetta
     let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+id;
     let response = await fetch(url);
     let data = await response.json();
     let meal = data.meals[0];
-    console.log(meal);
     let title = document.getElementById("title");
-    //Create an h2 element and put text inside it 
+    //Creo un h2 e ci inserisco il nome della ricetta
     let h2 = document.createElement("h2");
     h2.innerText = meal["strMeal"];
     title.appendChild(h2);
-    //TTitolo, area e categoria della ricetta
+    //Titolo, area e categoria della ricetta
     let category = document.createElement("p");
     category.innerHTML = "<b>Categoria: </b>"+meal["strCategory"];
     title.appendChild(category);
     let area = document.createElement("p");
     area.innerHTML = "<b>Area: </b>"+meal["strArea"];
     title.appendChild(area);
+    // stampo la media delle recensioni di gusto e difficoltà
     let valutazione = document.createElement("p");
     let recensioniricetta = JSON.parse(localStorage.getItem("Recensioni"));
     let media = 0;
@@ -127,7 +128,6 @@ async function getRicetta() {
         h3_3.classList.add("m-2");
         video.appendChild(h3_3);
         let iframe = document.createElement("iframe");
-        //i want the instructions preview to be centered, i want it height and width to be the same ratio as the instructions and relative to the screen
         iframe.style.width = "50vw";
         iframe.style.height = "29vw";
         iframe.style.alignContent = "center";
@@ -145,6 +145,7 @@ async function getRicetta() {
     h3_4.innerText = "Recensioni";
     h3_4.style.textAlign = "center";
     recensioni.appendChild(h3_4);
+    // stampo tutte le recensioni della ricetta selezionata
     let array_recensioni = JSON.parse(localStorage.getItem("Recensioni"));
     console.log(array_recensioni);
     let numberofrecensioni = 0;
@@ -211,8 +212,9 @@ async function getRicetta() {
     }
     setBottoni();
 }
+// funzione per aggiungere una recensione
 function addRecensione(){
-    
+    // prende i valori ricevuti dalla form e crea una recensione
     let titolo = document.getElementById("titolorecensione").value;
     let voto = document.getElementById("gusto").value;
     let difficolta = document.getElementById("difficolta").value;
@@ -236,6 +238,7 @@ function addRecensione(){
     localStorage.setItem("Recensioni", JSON.stringify(array_recensioni));
     location.href = "ricetta.html?id="+id;
 }
+// se l'utente non è loggato il form per le recensioni è bloccato
 function checklogin() {
     if (localStorage.getItem("logged") == "false") {
         let button = document.getElementById("formrecensione");
@@ -243,27 +246,25 @@ function checklogin() {
     }
 
 }
+// salvo l'ultima pagina in cui sono stato
 function setOldPage() {
     let logout = document.getElementById("logout");
     localStorage.setItem("oldPage", window.location.href);
 }
-
+// stampo i bottoni per aggiungi ricettario, se l'utente è loggato. Stampo aggiungi nota se la ricetta è nel ricettario dell'utente
 function setBottoni() {
     let logged = localStorage.getItem("logged");
     if (logged == "false") {
         return;
     }
     let user = localStorage.getItem("LoggedUser");
-    console.log(user);
     let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
-    console.log(ricettari);
     let ricettario = ricettari.find(ricettario => ricettario.username == user);
-    console.log(ricettario);
     let ricette = ricettario.ricette;
-    console.log(ricette);
     let id = localStorage.getItem("id");
     let ricetta = ricette.find(ricetta => ricetta.id == id);
     let title = document.getElementById("title");
+    // se la ricetta non è nel ricettario, aggiungo il bottone per aggiungerla, altrimenti per toglierla e per aggiungere la nota
     if (ricetta == undefined) {
         let button = document.createElement("button");
         button.id = "aggiungi";
@@ -292,6 +293,7 @@ function setBottoni() {
         title.appendChild(button2);
     }
 }
+// funzione per aggiungere la ricetta al ricettario
 function addRicetta() {
     let user = localStorage.getItem("LoggedUser");
     let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
@@ -305,6 +307,7 @@ function addRicetta() {
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     window.location.reload();
 }
+// funzione per la barra di ricerca
 function search() {
     let searchbar = document.getElementById("inputsearch");
     let search = searchbar.value;

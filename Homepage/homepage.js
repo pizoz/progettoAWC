@@ -1,5 +1,5 @@
 const URL = "https://www.themealdb.com/api/json/v1/1/random.php"
-
+// funzione per restituire le immagini di 15 ricette randomiche, ma non ripetute
 async function immagini_carosello() {
     let meals = [];
     let codici = [];
@@ -15,15 +15,12 @@ async function immagini_carosello() {
     }
     return meals;
 }
-
+// funzione per la creazione del carosello
 async function crea_carosello() {
     localStorage.setItem("oldPage", window.location.href);
     let meals = await immagini_carosello();
     let carosello = document.getElementById("valori");
-    if (!carosello) {
-        console.error("Element with id 'valori' not found.");
-        return;
-    }
+    // stampo 3 ricette per ogni slide
     for (let i = 0; i < meals.length; i += 3) {
         let div = document.createElement("div");
         div.className = "carousel-item";
@@ -106,7 +103,7 @@ async function crea_carosello() {
             cardBody.appendChild(valutazionedifficolta);
 
             let link = document.createElement("a");
-            link.href = "..\\Ricetta\\ricetta.html?id=" + meals[j]["idMeal"];
+            link.href = "../Ricetta/ricetta.html?id=" + meals[j]["idMeal"];
             link.className = "btn btn-primary";
             link.innerText = "View Recipe";
             cardBody.appendChild(link);
@@ -119,7 +116,7 @@ async function crea_carosello() {
         carosello.appendChild(div);
     }
 }
-
+// funzione per inserire un suggerimento di ricerca nella searchbar
 async function ricettarandom() {
     let ricetta = await fetch(URL);
     let data = await ricetta.json();
@@ -128,7 +125,7 @@ async function ricettarandom() {
     let searchbar = document.getElementById("inputsearch");
     searchbar.setAttribute("placeholder",nome);
 }
-
+// funzione per la ricerca tramite searchbar
 function search() {
     let searchbar = document.getElementById("inputsearch");
     let search = searchbar.value;

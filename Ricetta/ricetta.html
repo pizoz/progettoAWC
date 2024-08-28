@@ -13,10 +13,12 @@
             crossorigin="anonymous"
         />
     <link rel="stylesheet" href="ricetta.css">
+    <link rel="icon" href="../img/SIDE_BABY__1_-removebg-preview.png">
     <script src="ricetta.js"></script>
 
 </head>
 <body onload="body()" >
+    <!-- Navbar -->
     <header>
         <div class="container">
             <div class="row" id="navbar">
@@ -87,6 +89,7 @@
         </div>
     </header>
     <main>
+        <!-- Barra di ricerca -->
         <div class="container-fluid m-3">
             <div class="row">
                 <div class="col-3">
@@ -109,7 +112,7 @@
                 </div>
             </div>
         </div>
-
+        <!-- Body ricetta -->
         <div class="container m-auto" >
             <div class="row align-items-center" id="titolo">
                 
@@ -144,6 +147,7 @@
                             <label for="titolorecensione" class="form-label">Titolo</label>
                             <input type="text" class="form-control" id="titolorecensione" name="titolorecensione" required>
                         </div>
+                        <!-- Il codice per la gestione di gusto e difficoltà è a piè di pagina -->
                         <div class="col-3" id="gustoform">
                             <label for="voto" class="form-label">Gusto</label>
                             <div id="star-rating">
@@ -185,7 +189,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <p>
-                         <a href="..\Homepage\homepage.html">Home</a> | <a href="mailto:niccolo.pizzocri@studenti.unimi.it?subject=FORZA%20JUVE&body=SIUUUUUUUUUUUM">Contact</a>
+                         <a href="../Homepage/homepage.html">Home</a> | <a href="mailto:niccolo.pizzocri@studenti.unimi.it?subject=FORZA%20JUVE&body=SIUUUUUUUUUUUM">Contact</a>
                     </p>
                     <p>&copy; 2024 - Niccolò Pizzocri</p>
                 </div>
@@ -204,13 +208,14 @@
             crossorigin="anonymous"
         ></script>
     <script>
-
+        // funzione che gestisce l'inserimento di un voto tramite il click sulle stelline
         document.addEventListener("DOMContentLoaded", function() {
             var gusto = document.getElementById("gustoform");
             var stars = gusto.querySelectorAll(".bi-star");
             var rating = document.getElementById("gusto");
             
             stars.forEach(function(star, index) {
+                // se clicco salvo il rating
                 star.addEventListener("click", function() {
                     rating.value = index + 1;
                     stars.forEach(function(s, i) {
@@ -225,7 +230,7 @@
                     star.removeEventListener("mouseover", mouseOverHandler);
                     star.removeEventListener("mouseout", mouseOutHandler);
                 });
-
+                // se vado sopra col mouse vengono colorate le stelline
                 function mouseOverHandler() {
                     stars.forEach((s, i) => {
                         if (i <= index) {
@@ -237,7 +242,7 @@
                         }
                     });
                 }
-
+                // se esco, rimangono le stelline cliccate
                 function mouseOutHandler() {
                     stars.forEach((s, i) => {
                         if (i <= rating.value - 1) {
@@ -253,7 +258,7 @@
                 star.addEventListener("mouseover", mouseOverHandler);
                 star.addEventListener("mouseout", mouseOutHandler);
             });
-
+            // faccio la stessa cosa per difficoltà
             var form = document.getElementById("difficoltaform");
             var stars2 = form.querySelectorAll(".bi-star");
             var difficolta = document.getElementById("difficolta");

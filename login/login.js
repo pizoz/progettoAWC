@@ -1,12 +1,11 @@
+
 async function checkLogin(){
-    console.log("checkLogin");
+    // controllo che esista un utente tra quelli registrati con le credenziali inserite
     let username = document.getElementById("username").value;
     let password = document.getElementById("exampleInputPassword1").value;
 
     let users = JSON.parse(localStorage.getItem("RegisteredUsers"));
-    console.log(users);
-    console.log(username);
-    console.log(password);
+
     for(let i=0; i<users.length; i++){
         
         if(users[i].username == username && users[i].password == password){
@@ -21,7 +20,4 @@ async function checkLogin(){
    }
     alert("Username o password errati", "danger");
    window.location.reload();
-}
-function stampa() {
-    console.log(localStorage.getItem("oldPage"));
 }

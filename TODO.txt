@@ -43,6 +43,7 @@
             campo username, campo valutazione, Campo descrizione
     
     Recensioni -> array contenente frammenti JSON
+    
     {
         idRicetta:
         username:

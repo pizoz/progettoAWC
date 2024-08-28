@@ -1,5 +1,8 @@
+// funzione per l'eliminazione del profilo
 function eliminaProfilo() {
+    // viene mostrato un alert per conferma
     var r = confirm("Sei sicuro di voler eliminare il tuo profilo?");
+    // in caso affermativo cerco l'account, lo rimuovo dagli utenti registrati e effettuo il logout
     if (r == true) {
         let users = JSON.parse(localStorage.getItem("RegisteredUsers"));
         let currentUser =localStorage.getItem("LoggedUser");
@@ -27,7 +30,6 @@ function stampa() {
             user = users[i];
         }
     }
-    console.log(user);
     document.getElementById("username").innerHTML += " "+user.username;
     document.getElementById("email").innerHTML += " "+user.email;
     document.getElementById("nome").innerHTML += " "+user.nome;
@@ -167,11 +169,11 @@ function hideForm() {
 }
 
 async function getRicettario() {
-    // Ricavo il ricettario dell'utente
+    // Ricavo il ricettario dell'utente e stampo tutte le ricette contenute
     let user = localStorage.getItem("LoggedUser");
     let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
     let ricettario = ricettari.find(ricettario => ricettario.username == user);
-    console.log(ricettario);
+    
     let ricette = ricettario.ricette;
     let box = document.getElementById("BoxRicettario");
     let row = document.getElementById("riga");
@@ -186,7 +188,10 @@ async function getRicettario() {
         let ricetta = ricette[i];
         let id = ricetta.id;
         let nota = ricetta.nota;
-        console.log(nota);
+        
+        // let meals = localStorage.getItem("Meals");
+        // let meal = meals[id];
+
         let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+id;
         let response = await fetch(url);
         let data = await response.json();
@@ -290,6 +295,7 @@ async function getRicettario() {
     }
     
 }
+// funzione che rimuove la ricetta selezionata dal ricettario dell'utente loggato
 function rimuoviRicetta(id) {
     // Rimuove la ricetta dal ricettario
     let user = localStorage.getItem("LoggedUser");
@@ -323,7 +329,7 @@ function rimuoviRicetta(id) {
     }
 
 }
-
+// funzione per la visualizzazione delle recensioni scritte dall'utente loggato
 async function getRecensioni() {
     // Ricavo le recensioni dell'utente
     let user = localStorage.getItem("LoggedUser");
@@ -333,12 +339,14 @@ async function getRecensioni() {
     let box = document.getElementById("BoxRecensioni");
     let row = document.getElementById("recensioniUtente");
     row.setAttribute("style", "display: flex !important; justify-content: space-between !important;");
+    // se non ha lasciato recensioni mostro un messaggio
     if (recensioniUtente.length == 0) {
         let noRecensioni = document.createElement("h3");
         noRecensioni.classList.add("text-center","mb-5");
         noRecensioni.innerHTML = "Non hai ancora scritto recensioni";
         box.appendChild(noRecensioni);
     }
+    // se le recensioni sono meno di 3 mostro le recensioni a sinistra
     if (recensioniUtente.length < 3) {
         row.setAttribute("style", "display: flex !important; justify-content: flex-start !important;");
     }
@@ -420,7 +428,6 @@ async function getRecensioni() {
 function eliminaRecensione(idRIcetta,titolo, testo, username, voto, difficolta) {
     // Elimina la recensione
 
-    alert(idRIcetta, titolo, testo, username, voto, difficolta);
     let recensioni = JSON.parse(localStorage.getItem("Recensioni"));
     let index = recensioni.findIndex(recensione => recensione.idRicetta == idRIcetta && recensione.username == username && recensione.titolo == titolo && recensione.testo == testo && recensione.voto == voto && recensione.difficolta == difficolta);
     recensioni.splice(index, 1);
