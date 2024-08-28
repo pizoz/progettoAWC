@@ -316,6 +316,7 @@ function search() {
     }
     window.location.href = "../Results/results.html?search=" + search;
 }
+//funzione per rimuovere la ricetta dal ricettario
 function removeRicetta() {
     let user = localStorage.getItem("LoggedUser");
     let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
@@ -328,6 +329,7 @@ function removeRicetta() {
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     window.location.reload();
 }
+// quando schiaccio aggiungi nota, viene mostrato uno input testuale per aggiungere la nota e un bottone per salvarla
 function showformNota() {
     let title = document.getElementById("title");
     let form = document.createElement("form");
@@ -348,6 +350,7 @@ function showformNota() {
     let button2 = document.getElementById("shownota");
     button2.style.display = "none";
 }
+// funzione per salvare la nota nel ricettario
 function addNota() {
     let user = localStorage.getItem("LoggedUser");
     let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
@@ -361,6 +364,7 @@ function addNota() {
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     window.location.reload();
 }
+
 function body() {
     getRicetta();
     checklogin();

@@ -27,7 +27,7 @@ async function crea_carosello() {
         if (i === 0) {
             div.classList.add("active");
         }
-        div.setAttribute("data-bs-interval", "2000");
+        div.setAttribute("data-bs-interval", "3000");
 
         let cardContainer = document.createElement("div");
         cardContainer.className = "card-container d-flex justify-content-center";
