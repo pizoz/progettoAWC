@@ -34,7 +34,7 @@ async function getResults() {
     if (meals === null) {
         let noresults = document.createElement("h1");
         noresults.innerText = "No results found";
-        resultsrow.appendChild(noresults);
+        results.appendChild(noresults);
     } else {
         // altrimenti stampo tutte le ricette che sono state trovate
         for (let i = 0; i < meals.length; i++) {
