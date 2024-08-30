@@ -33,6 +33,7 @@ async function getResults() {
     // se non ci sono risultati stampo a video
     if (meals === null) {
         let noresults = document.createElement("h1");
+        noresults.classList.add("text-center");
         noresults.innerText = "No results found";
         results.appendChild(noresults);
     } else {

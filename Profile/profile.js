@@ -184,6 +184,9 @@ async function getRicettario() {
         noRicette.innerHTML = "Non hai ancora aggiunto ricette al tuo ricettario";
         box.appendChild(noRicette);
     }
+    if (ricette.length < 3) {
+        row.setAttribute("style", "display: flex !important; justify-content: flex-start !important;");
+    }
     for (let i = 0; i < ricette.length; i++) {
         let ricetta = ricette[i];
         let id = ricetta.id;
