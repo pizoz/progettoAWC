@@ -4,12 +4,12 @@ async function fetchAllMeals() {
    let allMeals = [];
    const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-   for (const letter of alphabet) { // Use "for...of" to iterate over array values
+   for (const letter of alphabet) { 
        try {
            const response = await fetch(BASE_URI + "search.php?f=" + letter);
            const { meals } = await response.json();
            
-           if (meals) { // Check if meals is not null or undefined
+           if (meals) {
                meals.forEach((meal) => {
                    allMeals.push(meal);
                });
