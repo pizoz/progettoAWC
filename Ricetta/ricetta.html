@@ -24,7 +24,7 @@
             <div class="row" id="navbar">
                 <nav class="navbar navbar-expand-lg">
                     <div class="col-4 col-lg-4">
-                        <a href="..\Homepage\homepage.html" class="navbar-brand">
+                        <a href="../Homepage/homepage.html" class="navbar-brand">
                             <img src="../img/SIDE_BABY__1_-removebg-preview (1).png" alt="logo" height="40" id="logo"/>
                         </a>
                     </div>
@@ -52,7 +52,7 @@
                             <ul class="navbar-nav ms-auto">
                                 
                                 <li class="nav-item align-content-end">
-                                    <a href="..\\Signup\\signup.html" class="nav-link" id="profilo">Registrati</a>
+                                    <a href="../Signup/signup.html" class="nav-link" id="profilo">Registrati</a>
                                 </li>
                                 <li class="nav-item align-content-end">
                                     <a class="nav-link" id="login">Login</a>
@@ -291,8 +291,8 @@
                 }
 
                 function mouseOutHandler() {
-                    stars.forEach((s, i) => {
-                        if (i <= rating.value - 1) {
+                    stars2.forEach((s, i) => {
+                        if (i <= difficolta.value - 1) {
                             s.classList.remove("bi-star");
                             s.classList.add("bi-star-fill");
                         } else {

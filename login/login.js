@@ -13,7 +13,7 @@ async function checkLogin(){
             localStorage.setItem("logged", "true");
             localStorage.setItem("LoggedUser", username);
             setTimeout(function() {
-                window.location.href = localStorage.getItem("oldPage");
+                window.history.go(-1);
             });
             return;
         }

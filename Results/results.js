@@ -121,7 +121,6 @@ async function getResults() {
 }
 
 function body() {
-    localStorage.setItem("oldPage", window.location.href);
     ricettarandom();
     getResults();
 }

@@ -50,7 +50,7 @@ function signup() {
         "username": username,
         "ricette": []
     }
-
+    // aggiungo l'utente e il ricettario a localStorage. Salvo l'utente loggato e lo reindirizzo alla pagina precedente
     let ricettari = JSON.parse(localStorage.getItem("Ricettari")) || [];
     ricettari.push(ricettario);
     localStorage.setItem("Ricettari", JSON.stringify(ricettari));
@@ -58,5 +58,5 @@ function signup() {
     localStorage.setItem("RegisteredUsers", JSON.stringify(users));
     localStorage.setItem("LoggedUser", username);
     localStorage.setItem("logged", "true");
-    window.location.href = localStorage.getItem("oldPage");
+    window.history.go(-1);
 }

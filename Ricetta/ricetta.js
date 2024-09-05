@@ -1,15 +1,11 @@
 //funzione per stampare le informazioni relative alla ricetta selezionata
-async function getRicetta() {
-    //setto la pagina in cui siamo come l'ultima in cui siamo stati
-    localStorage.setItem("oldPage", window.location.href);
+function getRicetta() {
     //salvo l'id dell'ultima ricetta caricata
     let id = window.location.href.split("id=")[1];
     localStorage.setItem("id", id);
     //ricavo le informazioni della ricetta
-    let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+id;
-    let response = await fetch(url);
-    let data = await response.json();
-    let meal = data.meals[0];
+    let meals = JSON.parse(localStorage.getItem("Meals"));
+    let meal = meals.find(meal => meal.idMeal == id);
     let title = document.getElementById("title");
     //Creo un h2 e ci inserisco il nome della ricetta
     let h2 = document.createElement("h2");
@@ -147,7 +143,7 @@ async function getRicetta() {
     recensioni.appendChild(h3_4);
     // stampo tutte le recensioni della ricetta selezionata
     let array_recensioni = JSON.parse(localStorage.getItem("Recensioni"));
-    console.log(array_recensioni);
+    // console.log(array_recensioni);
     let numberofrecensioni = 0;
     array_recensioni.forEach(recensione => {
         if(recensione.idRicetta == id){
@@ -178,7 +174,7 @@ async function getRicetta() {
             difficolta.innerHTML = "<b>Difficoltà: </b>";
             for (let i = 0; i < 5; i++) {
                 if (i< recensione.difficolta) {
-                    console.log(recensione.difficolta);
+                    // console.log(recensione.difficolta);
                     let star = document.createElement("i");
                     star.classList.add("bi", "bi-star-fill");
                     difficolta.appendChild(star);
@@ -245,11 +241,6 @@ function checklogin() {
         button.style.display = "none";
     }
 
-}
-// salvo l'ultima pagina in cui sono stato
-function setOldPage() {
-    let logout = document.getElementById("logout");
-    localStorage.setItem("oldPage", window.location.href);
 }
 // stampo i bottoni per aggiungi ricettario, se l'utente è loggato. Stampo aggiungi nota se la ricetta è nel ricettario dell'utente
 function setBottoni() {
@@ -364,9 +355,16 @@ function addNota() {
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     window.location.reload();
 }
-
+async function ricettarandom() {
+    let ricetta = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
+    let data = await ricetta.json();
+    let meal = data.meals[0];
+    let nome = meal["strMeal"];
+    let searchbar = document.getElementById("inputsearch");
+    searchbar.setAttribute("placeholder",nome);
+}
 function body() {
     getRicetta();
     checklogin();
-    setOldPage();
+    ricettarandom();
 }

@@ -15,31 +15,58 @@ async function immagini_carosello() {
     }
     return meals;
 }
+// funzione per restituire 15 ricette randomiche, ma non ripetute CHE PERO' USA LE RICETTE IN LOCAL STORAGE E NON RANDOM -> PIU' EFFICIENTE
+function immagini_efficiente() {
+    //salvo le ricette presenti in localStorage
+    let meals = JSON.parse(localStorage.getItem("Meals"));
+    let i = 0;
+    let scelti = []
+    while (i < 15) {
+        //prendo una ricetta random
+        let meal = meals[Math.floor(Math.random() * meals.length)]
+        //se è già stata scelta, la salto
+        if (meal in scelti) {
+            continue;
+        }
+        //altrimenti la aggiungo alla lista delle ricette
+        scelti.push(meal)
+        i++;
+    }
+    return scelti;
+}
 // funzione per la creazione del carosello
 async function crea_carosello() {
-    localStorage.setItem("oldPage", window.location.href);
-    let meals = await immagini_carosello();
+    // let meals = await immagini_carosello();
+    let meals = immagini_efficiente();
+    // console.log(controllo)
     let carosello = document.getElementById("valori");
     // stampo 3 ricette per ogni slide
     for (let i = 0; i < meals.length; i += 3) {
+        // creo un div per ogni slide
         let div = document.createElement("div");
         div.className = "carousel-item";
         if (i === 0) {
             div.classList.add("active");
         }
+        //aggiungo un countdown di 3 secondi per lo scorrimento automatico
         div.setAttribute("data-bs-interval", "3000");
-
+        // creo un div per contenere le 3 carte
         let cardContainer = document.createElement("div");
         cardContainer.className = "card-container d-flex justify-content-center";
+        //creo 3 carte per carousel-item
         for (let j = i; j < i + 3 && j < meals.length; j++) {
+            // creo la carta stampando l'immagine e il nome della ricetta da Meals in localStorage e ne usa l'id
+            // per creare le recensioni e il link alla pagina della ricetta
+
+            //creo la carta
             let card = document.createElement("div");
-            
             card.className = "card bg-custom-1";
+            //aggiungo l'immagine
             let img = document.createElement("img");
             img.className = "card-img-top";
             img.src = meals[j]["strMealThumb"];
             card.appendChild(img);
-
+            //aggiungo il titolo 
             let cardBody = document.createElement("div");
             cardBody.className = "card-body";
             let caption = document.createElement("h5");
@@ -51,6 +78,7 @@ async function crea_carosello() {
             category.innerHTML = "<b>Categoria</b>: "+ meals[j]["strCategory"];
             cardBody.appendChild(category);
 
+            // calcolo la media delle recensioni in difficoltà e gusto per la ricetta e stampo le stelle
             let valutazione = document.createElement("p");
             let recensioni = localStorage.getItem("Recensioni");
             let array_recensioni = JSON.parse(recensioni);
