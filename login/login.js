@@ -21,3 +21,10 @@ async function checkLogin(){
     alert("Username o password errati", "danger");
    window.location.reload();
 }
+function checkLogged() {
+    // controllo se l'utente è loggato
+    let logged = localStorage.getItem("logged");
+    if (logged == "true") {
+        window.location.href = "../Homepage/homepage.html";
+    }
+}

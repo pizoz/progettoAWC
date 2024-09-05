@@ -1,45 +1,67 @@
-const URL = "https://www.themealdb.com/api/json/v1/1/random.php"
 // funzione di ricerca della barra
 function search() {
     let searchbar = document.getElementById("inputsearch");
     let search = searchbar.value;
+
     if (search === "") {
-        search = searchbar.placeholder;
+        let value = searchbar.placeholder.trim();
+        let meals = JSON.parse(localStorage.getItem("Meals"));
+        meals = meals.filter(meal => meal["strMeal"].toLowerCase().includes(value.toLowerCase()))
+        if (meals.length !== 1) {
+            window.location.href = "../Results/results.html?search=" + encodeURIComponent(search);
+        }
+        let meal = meals[0];
+        let id = meal.idMeal;
+        window.location.href = "../Ricetta/ricetta.html?id=" + id;
+            
+    } else {
+        window.location.href = "../Results/results.html?search=" + encodeURIComponent(search);
     }
-    window.location.href = "../Results/results.html?search=" + search;
 }
 //funzione per settare una ricetta random come suggerimento nella barra di ricerca
-async function ricettarandom() {
-    let ricetta = await fetch(URL);
-    let data = await ricetta.json();
-    let meal = data.meals[0];
+function ricettarandom() {
+    let meals = JSON.parse(localStorage.getItem("Meals"));
+    let meal = meals[Math.floor(Math.random() * meals.length)];
     let nome = meal["strMeal"];
     let searchbar = document.getElementById("inputsearch");
     searchbar.setAttribute("placeholder",nome);
 }
 // funzione per stampare tutte le ricette ricevute tramite l'ultima ricerca
-async function getResults() {
-    //utilizzo la ricerca passata per utilizzare l'api
+function getResults() {
+    //utilizzo la ricerca passata per utilizzare trovare le ricette cercate
     let search = new URLSearchParams(window.location.search).get("search");
-    let URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + search;
-    let response = await fetch(URL);
-    let data = await response.json();
-    let meals = data.meals;
-    let recensione;
+
+    //ricerca meals in localstorage
+    let meals = JSON.parse(localStorage.getItem("Meals"));
+    let selectedmeals = meals.filter(meal => meal["strMeal"].toLowerCase().includes(search.toLowerCase()));
+
+    // outdated: ricerca meals tramite API
+
+    // let URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=" + search;
+    // let response = await fetch(URL);
+    // let data = await response.json();
+    // let selectedmeals = data.meals;
+
+
     let resultsrow = document.getElementById("resultsrow");
     let results = document.getElementById("results");
     results.classList.add("display-flex");
     results.setAttribute("style", "justify-content: flex-start;");
     // se non ci sono risultati stampo a video
-    if (meals === null) {
-        let noresults = document.createElement("h1");
+    if (selectedmeals.length === 0) {
+        let noresults = document.createElement("h5");
         noresults.classList.add("text-center");
-        noresults.innerText = "No results found";
+        noresults.innerHTML = "Nessun risultato trovato per: <strong>" + search;
         results.appendChild(noresults);
     } else {
         // altrimenti stampo tutte le ricette che sono state trovate
-        for (let i = 0; i < meals.length; i++) {
-            let meal = meals[i];
+        let numerorisultati = document.createElement("h5");
+        numerorisultati.classList.add("text-center","mb-3");
+
+        numerorisultati.innerHTML = "Ci sono "+selectedmeals.length+" risultati per: <strong>" + search;
+        results.appendChild(numerorisultati);
+        for (let i = 0; i < selectedmeals.length; i++) {
+            let meal = selectedmeals[i];
             let card = document.createElement("div");
             card.classList.add("card", "col-md-4", "col-12", "mb-3","col-sm-5","col-lg-3","col-xl-3");
             card.setAttribute("style", "margin: ");
@@ -115,7 +137,7 @@ async function getResults() {
         }
     }
     // se le recensioni sono meno di 3 voglio che stiano a sinistra
-    if (meals.length < 3) {
+    if (selectedmeals.length < 3) {
         resultsrow.setAttribute("style", "justify-content: flex-start !important;");
     }
 }

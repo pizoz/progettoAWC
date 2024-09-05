@@ -31,7 +31,8 @@
   localStorage.setItem('Recensioni', JSON.stringify(recensioni));
   // al caricamento della pagina genero le recensioni e reindirizzo alla homepage
   window.addEventListener('load',  async function() {
-    await generarecensioni();
+    await fetchAllMeals();
+    generarecensioni();
     window.location.href = "./Homepage/homepage.html";
   });
   

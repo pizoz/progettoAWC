@@ -71,7 +71,6 @@ function hidePassword() {
     };
     // Cambio l'icona dell'occhio e il link
     let occhio = document.getElementById("occhio");
-    console.log("ciao");
     occhio.classList.remove("bi-eye-slash-fill");
     occhio.classList.add("bi-eye-fill");
     link.setAttribute("onclick", "showPassword()");
@@ -168,7 +167,7 @@ function hideForm() {
     formModifica.style.display = "none";
 }
 
-async function getRicettario() {
+function getRicettario() {
     // Ricavo il ricettario dell'utente e stampo tutte le ricette contenute
     let user = localStorage.getItem("LoggedUser");
     let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
@@ -184,21 +183,18 @@ async function getRicettario() {
         noRicette.innerHTML = "Non hai ancora aggiunto ricette al tuo ricettario";
         box.appendChild(noRicette);
     }
+    
     if (ricette.length < 3) {
         row.setAttribute("style", "display: flex !important; justify-content: flex-start !important;");
     }
+
     for (let i = 0; i < ricette.length; i++) {
         let ricetta = ricette[i];
         let id = ricetta.id;
         let nota = ricetta.nota;
         
-        // let meals = localStorage.getItem("Meals");
-        // let meal = meals[id];
-
-        let url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="+id;
-        let response = await fetch(url);
-        let data = await response.json();
-        let meal = data.meals[0];
+        let meals = JSON.parse(localStorage.getItem("Meals"));
+        let meal = meals.find(meal => meal.idMeal == id);
         
         let col = document.createElement("div");
         col.classList.add("col-md-4");
@@ -302,43 +298,21 @@ async function getRicettario() {
 function rimuoviRicetta(id) {
     // Rimuove la ricetta dal ricettario
     let user = localStorage.getItem("LoggedUser");
-    if (user) {
-        let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
-        if (ricettari) {
-            let ricettario = ricettari.find(ricettario => ricettario.username == user);
-            if (ricettario) {
-                let ricette = ricettario.ricette;
-                if (ricette) {
-                    let ricettaIndex = ricette.findIndex(ricetta => ricetta.id == id);
-                    if (ricettaIndex !== -1) {
-                        ricette.splice(ricettaIndex, 1);
-                        ricettario.ricette = ricette;
-                        localStorage.setItem("Ricettari", JSON.stringify(ricettari));
-                        window.location.reload();
-                    } else {
-                        console.error("Ricetta not found");
-                    }
-                } else {
-                    console.error("Ricette not found");
-                }
-            } else {
-                console.error("Ricettario not found");
-            }
-        } else {
-            console.error("Ricettari not found");
-        }
-    } else {
-        console.error("User not logged in");
-    }
-
+    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));    
+    let ricettario = ricettari.find(ricettario => ricettario.username == user);  
+    let ricette = ricettario.ricette;      
+    let ricettaIndex = ricette.findIndex(ricetta => ricetta.id == id);
+    ricette.splice(ricettaIndex, 1);
+    ricettario.ricette = ricette;
+    localStorage.setItem("Ricettari", JSON.stringify(ricettari));
+    window.location.reload();
 }
 // funzione per la visualizzazione delle recensioni scritte dall'utente loggato
-async function getRecensioni() {
+function getRecensioni() {
     // Ricavo le recensioni dell'utente
     let user = localStorage.getItem("LoggedUser");
     let recensioni = JSON.parse(localStorage.getItem("Recensioni"));
     let recensioniUtente = recensioni.filter(recensione => recensione.username == user);
-    console.log(recensioniUtente);
     let box = document.getElementById("BoxRecensioni");
     let row = document.getElementById("recensioniUtente");
     row.setAttribute("style", "display: flex !important; justify-content: space-between !important;");
@@ -357,7 +331,7 @@ async function getRecensioni() {
         let recensione = recensioniUtente[i];
         let idRicetta = recensione.idRicetta;
         let meals = JSON.parse(localStorage.getItem("Meals"));
-        let meal = meals[idRicetta];
+        let meal = meals.find(meal => meal.idMeal == idRicetta);
         let titolo = meal.strMeal;
         let recensionetitolo = recensione.titolo;
         let recensionevoto = recensione.voto;

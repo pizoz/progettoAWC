@@ -35,7 +35,7 @@ function immagini_efficiente() {
     return scelti;
 }
 // funzione per la creazione del carosello
-async function crea_carosello() {
+function crea_carosello() {
     // let meals = await immagini_carosello();
     let meals = immagini_efficiente();
     // console.log(controllo)
@@ -145,10 +145,9 @@ async function crea_carosello() {
     }
 }
 // funzione per inserire un suggerimento di ricerca nella searchbar
-async function ricettarandom() {
-    let ricetta = await fetch(URL);
-    let data = await ricetta.json();
-    let meal = data.meals[0];
+function ricettarandom() {
+    let meals = JSON.parse(localStorage.getItem("Meals"));
+    let meal = meals[Math.floor(Math.random() * meals.length)];
     let nome = meal["strMeal"];
     let searchbar = document.getElementById("inputsearch");
     searchbar.setAttribute("placeholder",nome);
@@ -156,13 +155,23 @@ async function ricettarandom() {
 // funzione per la ricerca tramite searchbar
 function search() {
     let searchbar = document.getElementById("inputsearch");
-    let search = searchbar.value;
-    if (search === "") {
-        search = searchbar.placeholder;
-    }
-    window.location.href = "../Results/results.html?search=" + search;
-}
+    let search = searchbar.value.trim();
 
+    if (search === "") {
+        let value = searchbar.placeholder.trim();
+        let meals = JSON.parse(localStorage.getItem("Meals"));
+        meals = meals.filter(meal => meal["strMeal"].toLowerCase().includes(value.toLowerCase()))
+        if (meals.length !== 1) {
+            window.location.href = "../Results/results.html?search=" + encodeURIComponent(search);
+        }
+        let meal = meals[0];
+        let id = meal.idMeal;
+        window.location.href = "../Ricetta/ricetta.html?id=" + id;
+            
+    } else {
+        window.location.href = "../Results/results.html?search=" + encodeURIComponent(search);
+    }
+}
 function body() {
     crea_carosello();
     ricettarandom();

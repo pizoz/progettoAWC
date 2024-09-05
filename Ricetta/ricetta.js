@@ -301,11 +301,23 @@ function addRicetta() {
 // funzione per la barra di ricerca
 function search() {
     let searchbar = document.getElementById("inputsearch");
-    let search = searchbar.value;
+    let search = searchbar.value.trim();
+
     if (search === "") {
-        search = searchbar.placeholder;
+        let value = searchbar.placeholder.trim();
+        let meals = JSON.parse(localStorage.getItem("Meals"));
+        meals = meals.filter(meal => meal["strMeal"].toLowerCase().includes(value.toLowerCase()));
+        if (meals.length != 1) {
+            window.location.href = "../Results/results.html?search=" + search;
+            return;
+        }
+        let meal = meals[0];
+        let id = meal.idMeal;
+        window.location.href = "../Ricetta/ricetta.html?id=" + id;
+            
+    } else {
+        window.location.href = "../Results/results.html?search=" + search;
     }
-    window.location.href = "../Results/results.html?search=" + search;
 }
 //funzione per rimuovere la ricetta dal ricettario
 function removeRicetta() {
@@ -355,10 +367,9 @@ function addNota() {
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     window.location.reload();
 }
-async function ricettarandom() {
-    let ricetta = await fetch("https://www.themealdb.com/api/json/v1/1/random.php");
-    let data = await ricetta.json();
-    let meal = data.meals[0];
+function ricettarandom() {
+    let meals = JSON.parse(localStorage.getItem("Meals"));
+    let meal = meals[Math.floor(Math.random() * meals.length)];
     let nome = meal["strMeal"];
     let searchbar = document.getElementById("inputsearch");
     searchbar.setAttribute("placeholder",nome);

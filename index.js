@@ -5,28 +5,27 @@ async function fetchAllMeals() {
    const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
    for (const letter of alphabet) { 
-       try {
-           const response = await fetch(BASE_URI + "search.php?f=" + letter);
-           const { meals } = await response.json();
+      try {
+         const response = await fetch(BASE_URI + "search.php?f=" + letter);
+         const { meals } = await response.json();
            
-           if (meals) {
-               meals.forEach((meal) => {
-                   allMeals.push(meal);
-               });
-           }
-       } catch (error) {
-           console.error(`Error fetching meals for letter ${letter}:`, error);
-       }
+         if (meals) {
+            meals.forEach((meal) => {
+               allMeals.push(meal);
+            });
+         }
+      } catch (error) {
+         console.error(`Error fetching meals for letter ${letter}:`, error);
+      }
    }
-
    localStorage.setItem("Meals", JSON.stringify(allMeals));
    return allMeals;
 }
 
- // funzione che genera recensioni casuali per tutte le ricette presenti nel sito
-async function generarecensioni()  {
+// funzione che genera recensioni casuali per tutte le ricette presenti nel sito
+function generarecensioni()  {
 
-   let meals = await fetchAllMeals();
+   let meals = JSON.parse(localStorage.getItem("Meals"));
    let recensioni = JSON.parse(localStorage.getItem("Recensioni")) || [];  
 
    meals.forEach(meal => {

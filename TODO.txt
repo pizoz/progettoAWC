@@ -66,17 +66,8 @@
     
     dell'utente loggato in teoria mi basta sono sapere username
 
-    COME USARE localStorage
-    
-    let RegisteredUsers = localStorage.getItem("RegisteredUsers"); ti restituisce una stringa
-    RegisteredUsers = JSON.parse(RegisteredUsers); 
-    RegisteredUsers["marco"] = {
-        "password": "ciao",
-        "email": "marco@test.it"
-    };
-    localStorage.setItem("RegisteredUsers", JSON.stringify(RegisteredUsers));
-    console.log(localStorage.getItem("RegisteredUsers"));
 
     DA FARE
-    data e ora recensione
-    modifica stelline
+    data e ora recensione DONE
+    modifica stelline DONE
+    utilizzare l'API only once DONE
