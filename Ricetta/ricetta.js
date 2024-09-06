@@ -36,16 +36,18 @@ function getRicetta() {
     valutazione.innerHTML = "<b>Gusto: </b>";
     valutazione.style.textWrap = "nowrap";
     for (let i = 0; i < 5; i++) {
-        if (i< mediafalsa) {
-            let star = document.createElement("i");
+        let star = document.createElement("i");
+        if (i < mediafalsa) {
             star.classList.add("bi", "bi-star-fill");
-            valutazione.appendChild(star);
-        } else {
-            let star = document.createElement("i");
+        }
+        if (i === Math.floor(media) && (media - Math.floor(media) >= 0.25 && media - Math.floor(media) <= 0.75)) {
+            star.classList.remove("bi","bi-star-full")
+            star.classList.add("bi", "bi-star-half");
+        } else if (i >= mediafalsa){
             star.classList.add("bi", "bi-star");
-            valutazione.appendChild(star);
-        };
-    };
+        }
+        valutazione.appendChild(star);
+    }
     valutazione.innerHTML += " ("+media.toFixed(1)+")";
 
     let valutazionedifficolta = document.createElement("p");
@@ -64,16 +66,18 @@ function getRicetta() {
     }
     let difficoltafalsa = Math.round(difficolta);
     for (let i = 0; i < 5; i++) {
-        if (i< difficoltafalsa) {
-            let star = document.createElement("i");
+        let star = document.createElement("i");
+        if (i < difficoltafalsa) {
             star.classList.add("bi", "bi-star-fill");
-            valutazionedifficolta.appendChild(star);
-        } else {
-            let star = document.createElement("i");
+        }
+        if (i === Math.floor(difficolta) && (difficolta - Math.floor(difficolta) >= 0.25 && difficolta - Math.floor(difficolta) <= 0.75)) {
+            star.classList.remove("bi","bi-star-full")
+            star.classList.add("bi", "bi-star-half");
+        } else if (i >= difficoltafalsa){
             star.classList.add("bi", "bi-star");
-            valutazionedifficolta.appendChild(star);
-        };
-    };
+        }
+        valutazionedifficolta.appendChild(star);
+    }
     title.appendChild(valutazione);
     title.appendChild(valutazionedifficolta);
     valutazionedifficolta.innerHTML += " ("+difficolta.toFixed(1)+")";

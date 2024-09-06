@@ -100,30 +100,34 @@ function getResults() {
             let media = Math.round(mediavera);
             valutazione.innerHTML = "<b>Gusto</b>: ";
             for (let i = 0; i < 5; i++) {
-                if (i< media) {
-                    let star = document.createElement("i");
+                let star = document.createElement("i");
+                if (i < media) {
                     star.classList.add("bi", "bi-star-fill");
-                    valutazione.appendChild(star);
-                } else {
-                    let star = document.createElement("i");
+                }
+                if (i === Math.floor(mediavera) && (mediavera - Math.floor(mediavera) >= 0.25 && mediavera - Math.floor(mediavera) <= 0.75)) {
+                    star.classList.remove("bi","bi-star-full")
+                    star.classList.add("bi", "bi-star-half");
+                } else if (i >= media){
                     star.classList.add("bi", "bi-star");
-                    valutazione.appendChild(star);
-                };
-            };
+                }
+                valutazione.appendChild(star);
+            }
             
             let valutazionedifficolta = document.createElement("p");
             valutazionedifficolta.innerHTML = "<b>Difficoltà</b>: ";
             for (let i = 0; i < 5; i++) {
+                let star = document.createElement("i");
                 if (i < difficoltavera) {
-                    let star = document.createElement("i");
                     star.classList.add("bi", "bi-star-fill");
-                    valutazionedifficolta.appendChild(star);
-                } else {
-                    let star = document.createElement("i");
+                }
+                if (i === Math.floor(difficolta) && (difficolta - Math.floor(difficolta) >= 0.25 && difficolta - Math.floor(difficolta) <= 0.75)) {
+                    star.classList.remove("bi","bi-star-full")
+                    star.classList.add("bi", "bi-star-half");
+                } else if (i >= difficoltavera){
                     star.classList.add("bi", "bi-star");
-                    valutazionedifficolta.appendChild(star);
-                };
-            };
+                }
+                valutazionedifficolta.appendChild(star);
+            }
             cardBody.appendChild(valutazione);
             cardBody.appendChild(valutazionedifficolta);
             let link = document.createElement("a");
