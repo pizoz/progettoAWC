@@ -29,7 +29,7 @@ function generarecensioni()  {
    let recensioni = JSON.parse(localStorage.getItem("Recensioni")) || [];  
 
    meals.forEach(meal => {
-      for (let i = 0; i <2; i++) {
+      for (let i = 0; i <5; i++) {
       let username = "admin";
       let titolo = "titolo";
       let testo = "testo";

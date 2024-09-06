@@ -60,3 +60,8 @@ function signup() {
     localStorage.setItem("logged", "true");
     window.history.go(-1);
 }
+function checkLogged() {
+    if (localStorage.getItem("logged") == "true") {
+        window.location.href = "../Homepage/homepage.html";
+    }
+}
