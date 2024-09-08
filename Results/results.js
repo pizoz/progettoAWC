@@ -76,6 +76,9 @@ function getResults() {
             cardTitle.innerHTML ="<strong>" +meal["strMeal"]+"</strong>";
             cardBody.appendChild(cardTitle);
 
+            let categoria = document.createElement("p");
+            categoria.innerHTML = "<b>Categoria</b>: " + meal["strCategory"];
+            cardBody.appendChild(categoria);
             let valutazione = document.createElement("p");
             let recensioni = localStorage.getItem("Recensioni");
             let array_recensioni = JSON.parse(recensioni);

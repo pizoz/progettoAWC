@@ -9,17 +9,13 @@ function signup() {
     var password = document.getElementById("password").value;
     var confirmPassword = document.getElementById("confirmpassword").value;
 
-    // se un campo è vuoto, mostro un alert
-    if (email == "" || nome == "" || cognome == "" || datadinascita == "" || username == "" || password == "" || confirmPassword == "") {
-        alert("Compilare tutti i campi");
-        return;
-    }
 
     // se le password non coincidono, mostro un alert
     if (password != confirmPassword) {
         alert("Le password non coincidono");
         return;
     };
+    
     // se l'username è già in uso, mostro un alert
 
     let users = JSON.parse(localStorage.getItem("RegisteredUsers"));
@@ -37,7 +33,7 @@ function signup() {
             return;
         }
     });
-    // altrimenti, salvo l'utente in localStorage e ne creo il ricettario, aggiorno le info di login e lo reindirizzo alla pagina precedente
+    // altrimenti, salvo l'utente in localStorage e ne creo il ricettario
     let user = {
         "username": username,
         "password": password,

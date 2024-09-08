@@ -184,7 +184,7 @@ function getRicettario() {
         box.appendChild(noRicette);
     }
     
-    if (ricette.length < 3) {
+    if (ricette.length % 3 != 0) {
         row.setAttribute("style", "display: flex !important; justify-content: flex-start !important;");
     }
 

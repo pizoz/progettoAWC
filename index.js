@@ -1,4 +1,4 @@
-// allo start del sito vengono salvate tutte le ricette, utilizzando tutte le categorie presenti nel sito
+// allo start del sito vengono salvate tutte le ricette, utilizzando tutte le lettere con cui una ricetta potrebbe cominciare
 async function fetchAllMeals() {
    const BASE_URI = "https://www.themealdb.com/api/json/v1/1/";
    let allMeals = [];
@@ -19,7 +19,6 @@ async function fetchAllMeals() {
       }
    }
    localStorage.setItem("Meals", JSON.stringify(allMeals));
-   return allMeals;
 }
 
 // funzione che genera recensioni casuali per tutte le ricette presenti nel sito

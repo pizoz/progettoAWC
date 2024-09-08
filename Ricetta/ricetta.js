@@ -35,6 +35,7 @@ function getRicetta() {
     let mediafalsa = Math.round(media);
     valutazione.innerHTML = "<b>Gusto: </b>";
     valutazione.style.textWrap = "nowrap";
+    //Creo delle stelle per rappresentare la media delle recensioni: se la media è n.5, stampo n stelle piene e mezza stella
     for (let i = 0; i < 5; i++) {
         let star = document.createElement("i");
         if (i < mediafalsa) {
@@ -86,13 +87,13 @@ function getRicetta() {
     
     title.appendChild(valutazionedifficolta);
     let img = document.getElementById("img");
-    //Create an img element and put the image inside it
+    //creo un'immagine con la copertina della ricetta
     let image = document.createElement("img");
     image.src = meal["strMealThumb"];
     image.id = "copertina";
     img.appendChild(image);
     let ingredients = document.getElementById("ingredients");
-    //Create an h3 element and put text inside it
+    // stampo ingredienti e quantità
     let h3 = document.createElement("h3");
     h3.innerText = "Ingredienti";
     h3.style.textAlign = "center";
@@ -110,7 +111,7 @@ function getRicetta() {
         }
     }
     let instructions = document.getElementById("instructions");
-    //Create an h3 element and put text inside it
+    // stampo le istruzioni
     let h3_2 = document.createElement("h3");
     h3_2.innerText = "Istruzioni";
     h3_2.style.textAlign = "center";
@@ -118,7 +119,8 @@ function getRicetta() {
     let p = document.createElement("p");
     p.innerText = meal["strInstructions"];
     instructions.appendChild(p);
-    //Create a youtube video preview with the link found in the API
+    //creo preview del video tutorial
+
     if (meal["strYoutube"] != "") {
         let video = document.getElementById("video");
         video.style.alignContent = "center";
@@ -150,6 +152,7 @@ function getRicetta() {
     // console.log(array_recensioni);
     let numberofrecensioni = 0;
     array_recensioni.forEach(recensione => {
+
         if(recensione.idRicetta == id){
             if (recensione.difficolta == null) {
                 recensione.difficolta = 0;
@@ -207,7 +210,7 @@ function getRicetta() {
         p.innerText = "Ancora nessuna recensione per questa ricetta";
         recensioni.appendChild(p);
     }
-    if (numberofrecensioni < 3) {
+    if (numberofrecensioni % 3 != 0) {
         recensioni.setAttribute("style", "justify-content: flex-start !important;");
     }
     setBottoni();
@@ -302,7 +305,8 @@ function addRicetta() {
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     window.location.reload();
 }
-// funzione per la barra di ricerca
+// funzione per la barra di ricerca: cerca tra i cibi che CONTENGONO la stringa, non che iniziano con essa. 
+// Se c'è una sola corrispondenza, reindirizza alla pagina della ricetta
 function search() {
     let searchbar = document.getElementById("inputsearch");
     let search = searchbar.value.trim();
@@ -371,6 +375,7 @@ function addNota() {
     window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     window.location.reload();
 }
+// funzione per stampare nella barra di ricerca un suggerimento di ricetta casuale
 function ricettarandom() {
     let meals = JSON.parse(localStorage.getItem("Meals"));
     let meal = meals[Math.floor(Math.random() * meals.length)];
