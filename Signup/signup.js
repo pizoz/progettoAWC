@@ -21,7 +21,6 @@ function signup() {
     };
     
     // se l'username è già in uso, mostro un alert
-
     let users = JSON.parse(localStorage.getItem("RegisteredUsers"));
     users.forEach(user => {
         if (user.username == username) {
