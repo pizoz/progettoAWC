@@ -4,6 +4,7 @@
   localStorage.clear();
   let users = [];
   //Aggiungo l'utente admin
+  let ricettario = [];
   users.push(
     {
     "username": "admin",
@@ -11,18 +12,18 @@
     "email": "niccolo.pizzocri@studenti.unimi.it",
     "nome": "Niccolò",
     "cognome": "Pizzocri",
-    "dataNascita": "2001-05-02"
+    "dataNascita": "2001-05-02",
+    "ricettario": ricettario
   }
   );
   // creo il ricettario per l'utente admin
   let ricettari = [];
-  let ricettario = {
+  ricettario = {
     "username": "admin",
     "ricette": []
   }
   ricettari.push(ricettario);
   // Salvo ricettari, utenti e le info di login
-  localStorage.setItem('Ricettari', JSON.stringify(ricettari));
   localStorage.setItem("logged", "false");
   localStorage.setItem('RegisteredUsers', JSON.stringify(users));
   localStorage.setItem('LoggedUser',"");

@@ -8,8 +8,12 @@ function signup() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var confirmPassword = document.getElementById("confirmpassword").value;
-
-
+    var ricettario =[];
+    // controllo che l'username non sia uguale a "Utente Eliminato", con cui gestisco le recensioni degli utenti eliminati
+    if (username == "Utente Eliminato") {
+        alert("Username non disponibile");
+        return;
+    }
     // se le password non coincidono, mostro un alert
     if (password != confirmPassword) {
         alert("Le password non coincidono");
@@ -40,16 +44,9 @@ function signup() {
         "email": email,
         "nome": nome,
         "cognome": cognome,
-        "dataNascita": datadinascita
+        "dataNascita": datadinascita,
+        "ricettario": ricettario
     };
-    let ricettario = {
-        "username": username,
-        "ricette": []
-    }
-    // aggiungo l'utente e il ricettario a localStorage. Salvo l'utente loggato e lo reindirizzo alla pagina precedente
-    let ricettari = JSON.parse(localStorage.getItem("Ricettari")) || [];
-    ricettari.push(ricettario);
-    localStorage.setItem("Ricettari", JSON.stringify(ricettari));
     users.push(user);
     localStorage.setItem("RegisteredUsers", JSON.stringify(users));
     localStorage.setItem("LoggedUser", username);

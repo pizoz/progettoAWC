@@ -15,6 +15,12 @@ function eliminaProfilo() {
                 window.location.href = "../Homepage/homepage.html";
             }
         }
+        let recensioni = JSON.parse(localStorage.getItem("Recensioni"));
+        let recensioniUtente = recensioni.filter(recensione => recensione.username == currentUser);
+        for (let i = 0; i < recensioniUtente.length; i++) {
+            recensioniUtente[i].username = "Utente eliminato";
+        }
+        localStorage.setItem("Recensioni", JSON.stringify(recensioni));
     } else {
         window.location.reload
     }
@@ -88,6 +94,7 @@ function modificaProfilo() {
     let datanascita = document.getElementById("datanascitaform").value;
     let password = document.getElementById("passwordform").value;
     let confermapassword = document.getElementById("confermaPasswordform").value;
+    let ricettario = utente.ricettario;
     // Controllo che le password inserite siano uguali
     if (password != confermapassword) {
         alert("Le password non corrispondono");
@@ -118,7 +125,8 @@ function modificaProfilo() {
         "email": email,
         "nome": nome,
         "cognome": cognome,
-        "dataNascita": datanascita
+        "dataNascita": datanascita,
+        "ricettario": ricettario
     }
     // Aggiorno l'utente loggato e cambio il nome nelle sue recensioni
     localStorage.setItem("LoggedUser", username);    
@@ -128,13 +136,7 @@ function modificaProfilo() {
             recensioni[i].username = username;
         }
     }
-    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
-    for (let i = 0; i < ricettari.length; i++) {
-        if (ricettari[i].username == user) {
-            ricettari[i].username = username;
-        }
-    }
-    localStorage.setItem("Ricettari", JSON.stringify(ricettari));
+    
     localStorage.setItem("Recensioni", JSON.stringify(recensioni));
     // Aggiorno l'utente negli utenti registrati
     for (let i = 0; i < users.length; i++) {
@@ -169,11 +171,11 @@ function hideForm() {
 
 function getRicettario() {
     // Ricavo il ricettario dell'utente e stampo tutte le ricette contenute
-    let user = localStorage.getItem("LoggedUser");
-    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
-    let ricettario = ricettari.find(ricettario => ricettario.username == user);
+    let username = localStorage.getItem("LoggedUser");
+    let users = JSON.parse(localStorage.getItem("RegisteredUsers"));
+    let user = users.find(user => user.username == username)
     
-    let ricette = ricettario.ricette;
+    let ricette = user.ricettario;
     let box = document.getElementById("BoxRicettario");
     let row = document.getElementById("riga");
     row.setAttribute("style", "display: flex !important; justify-content: space-between !important;");
@@ -301,14 +303,14 @@ function getRicettario() {
 // funzione che rimuove la ricetta selezionata dal ricettario dell'utente loggato
 function rimuoviRicetta(id) {
     // Rimuove la ricetta dal ricettario
-    let user = localStorage.getItem("LoggedUser");
-    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));    
-    let ricettario = ricettari.find(ricettario => ricettario.username == user);  
-    let ricette = ricettario.ricette;      
+    let username = localStorage.getItem("LoggedUser");
+    let users = JSON.parse(localStorage.getItem("RegisteredUsers"));
+    let user = users.find(user => user.username == username)
+    
+    let ricette = user.ricettario;      
     let ricettaIndex = ricette.findIndex(ricetta => ricetta.id == id);
     ricette.splice(ricettaIndex, 1);
-    ricettario.ricette = ricette;
-    localStorage.setItem("Ricettari", JSON.stringify(ricettari));
+    localStorage.setItem("RegisteredUsers",JSON.stringify(users))
     window.location.reload();
 }
 // funzione per la visualizzazione delle recensioni scritte dall'utente loggato

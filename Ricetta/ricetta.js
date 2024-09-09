@@ -255,12 +255,15 @@ function setBottoni() {
     if (logged == "false") {
         return;
     }
-    let user = localStorage.getItem("LoggedUser");
-    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
-    let ricettario = ricettari.find(ricettario => ricettario.username == user);
-    let ricette = ricettario.ricette;
+    let username = localStorage.getItem("LoggedUser");
+    let users = JSON.parse(localStorage.getItem("RegisteredUsers"));
+    let user = users.find(user => user.username == username);
+
+    let ricettario = user.ricettario;
+    
+    
     let id = localStorage.getItem("id");
-    let ricetta = ricette.find(ricetta => ricetta.id == id);
+    let ricetta = ricettario.find(ricetta => ricetta.id == id);
     let title = document.getElementById("title");
     // se la ricetta non è nel ricettario, aggiungo il bottone per aggiungerla, altrimenti per toglierla e per aggiungere la nota
     if (ricetta == undefined) {
@@ -293,16 +296,19 @@ function setBottoni() {
 }
 // funzione per aggiungere la ricetta al ricettario
 function addRicetta() {
-    let user = localStorage.getItem("LoggedUser");
-    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
-    let ricettario = ricettari.find(ricettario => ricettario.username == user);
+    let username = localStorage.getItem("LoggedUser");
+    let users = JSON.parse(localStorage.getItem("RegisteredUsers"));
+    let user = users.find(user => user.username == username);
+    
+    let ricettario = user.ricettario;
+
     let id = localStorage.getItem("id");
     let ricetta = {
         "id": id,
         "nota": ""
     };
-    ricettario.ricette.push(ricetta);
-    window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
+    ricettario.push(ricetta);
+    localStorage.setItem("RegisteredUsers", JSON.stringify(users));
     window.location.reload();
 }
 // funzione per la barra di ricerca: cerca tra i cibi che CONTENGONO la stringa, non che iniziano con essa. 
@@ -329,15 +335,17 @@ function search() {
 }
 //funzione per rimuovere la ricetta dal ricettario
 function removeRicetta() {
-    let user = localStorage.getItem("LoggedUser");
-    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
-    let ricettario = ricettari.find(ricettario => ricettario.username == user);
+    let username = localStorage.getItem("LoggedUser");
+    let users = JSON.parse(localStorage.getItem("RegisteredUsers"));
+    let user = users.find(user => user.username == username);
+    
+    let ricettario = user.ricettario;
     let id = localStorage.getItem("id");
-    let ricette = ricettario.ricette;
-    let ricetta = ricette.find(ricetta => ricetta.id == id);
-    let index = ricette.indexOf(ricetta);
-    ricette.splice(index, 1);
-    window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
+    let ricetta = ricettario.find(ricetta => ricetta.id == id);
+    let index = ricettario.indexOf(ricetta);
+    ricettario.splice(index, 1);
+    localStorage.setItem("RegisteredUsers",JSON.stringify(users));
+    
     window.location.reload();
 }
 // quando schiaccio aggiungi nota, viene mostrato uno input testuale per aggiungere la nota e un bottone per salvarla
@@ -363,16 +371,16 @@ function showformNota() {
 }
 // funzione per salvare la nota nel ricettario
 function addNota() {
-    let user = localStorage.getItem("LoggedUser");
-    let ricettari = JSON.parse(localStorage.getItem("Ricettari"));
-    let ricettario = ricettari.find(ricettario => ricettario.username == user);
+    let username = localStorage.getItem("LoggedUser");
+    let users = JSON.parse(localStorage.getItem("RegisteredUsers"));
+    let user = users.find(user => user.username == username);
+    let ricettario = user.ricettario;
     let id = localStorage.getItem("id");
-    let ricette = ricettario.ricette;
-    let ricetta = ricette.find(ricetta => ricetta.id == id);
+    let ricetta = ricettario.find(ricetta => ricetta.id == id);
     let notaElement = document.getElementById("nota");
     let nota = notaElement.value;
     ricetta.nota = nota;
-    window.localStorage.setItem("Ricettari", JSON.stringify(ricettari));
+    localStorage.setItem("RegisteredUsers",JSON.stringify(users));
     window.location.reload();
 }
 // funzione per stampare nella barra di ricerca un suggerimento di ricetta casuale

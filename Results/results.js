@@ -57,10 +57,12 @@ function getResults() {
         // altrimenti stampo tutte le ricette che sono state trovate
         let numerorisultati = document.createElement("h5");
         numerorisultati.classList.add("text-center","mb-3");
-
+        // stampo il numero di risultati trovati e la ricerca effettuata
         numerorisultati.innerHTML = "Ci sono "+selectedmeals.length+" risultati per: <strong>" + search;
         results.appendChild(numerorisultati);
+        // per ogni ricetta trovata, creo una card con le informazioni principali
         for (let i = 0; i < selectedmeals.length; i++) {
+            // Immagine e titolo
             let meal = selectedmeals[i];
             let card = document.createElement("div");
             card.classList.add("card", "col-md-4", "col-12", "mb-3","col-sm-5","col-lg-3","col-xl-3");
@@ -75,10 +77,11 @@ function getResults() {
             cardTitle.classList.add("card-title");
             cardTitle.innerHTML ="<strong>" +meal["strMeal"]+"</strong>";
             cardBody.appendChild(cardTitle);
-
+            // categoria
             let categoria = document.createElement("p");
             categoria.innerHTML = "<b>Categoria</b>: " + meal["strCategory"];
             cardBody.appendChild(categoria);
+            // valutazione in gusto e difficoltà
             let valutazione = document.createElement("p");
             let recensioni = localStorage.getItem("Recensioni");
             let array_recensioni = JSON.parse(recensioni);
@@ -136,6 +139,7 @@ function getResults() {
             let link = document.createElement("a");
             link.href = "../Ricetta/ricetta.html?id=" + meal["idMeal"];
             link.className = "btn btn-primary";
+            link.setAttribute("style", "margin-top: auto;");
             link.innerText = "View Recipe";
             cardBody.appendChild(link);
             card.appendChild(cardBody);
@@ -144,7 +148,7 @@ function getResults() {
         }
     }
     // se le recensioni sono meno di 3 voglio che stiano a sinistra
-    if (selectedmeals.length < 3) {
+    if (selectedmeals.length % 3 != 0) {
         resultsrow.setAttribute("style", "justify-content: flex-start !important;");
     }
 }
