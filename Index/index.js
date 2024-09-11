@@ -24,7 +24,7 @@ async function fetchAllMeals() {
 // funzione che genera recensioni casuali per tutte le ricette presenti nel sito
 function generarecensioni()  {
 
-   let meals = JSON.parse(localStorage.getItem("Meals"));
+   let meals = JSON.parse(localStorage.getItem("Meals")) || [];
    let recensioni = JSON.parse(localStorage.getItem("Recensioni")) || [];  
 
    meals.forEach(meal => {

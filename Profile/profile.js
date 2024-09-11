@@ -330,7 +330,7 @@ function getRecensioni() {
         box.appendChild(noRecensioni);
     }
     // se le recensioni sono meno di 3 mostro le recensioni a sinistra
-    if (recensioniUtente.length < 3) {
+    if (recensioniUtente.length % 3 != 0) {
         row.setAttribute("style", "display: flex !important; justify-content: flex-start !important;");
     }
     for (let i = 0; i < recensioniUtente.length; i++) {

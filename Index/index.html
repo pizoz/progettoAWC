@@ -17,12 +17,6 @@
   }
   );
   // creo il ricettario per l'utente admin
-  let ricettari = [];
-  ricettario = {
-    "username": "admin",
-    "ricette": []
-  }
-  ricettari.push(ricettario);
   // Salvo ricettari, utenti e le info di login
   localStorage.setItem("logged", "false");
   localStorage.setItem('RegisteredUsers', JSON.stringify(users));
@@ -34,9 +28,7 @@
   window.addEventListener('load',  async function() {
     await fetchAllMeals();
     generarecensioni();
-    window.location.href = "./Homepage/homepage.html";
+    window.location.href = "../Homepage/homepage.html";
   });
-  
-  
 </script>
 

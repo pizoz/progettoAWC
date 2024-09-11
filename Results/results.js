@@ -7,7 +7,7 @@ function search() {
         let value = searchbar.placeholder.trim();
         let meals = JSON.parse(localStorage.getItem("Meals"));
         meals = meals.filter(meal => meal["strMeal"].toLowerCase().includes(value.toLowerCase()))
-        if (meals.length !== 1) {
+        if (meals.length != 1) {
             window.location.href = "../Results/results.html?search=" + encodeURIComponent(search);
         }
         let meal = meals[0];
