@@ -44,11 +44,12 @@ h5, h3 {
     border: 2px solid rgb(65, 44, 3);
 }
 #navbar {
+    border-radius: 0;
     background-color: rgb(220, 215, 200);
 }
 .bg-custom-1 {
     background-color: rgb(250, 245, 235);
-    border: 1px solid rgb(65, 44, 3);
+    border: 2px solid rgb(65, 44, 3);
     margin: 1vh;
 }
 .btn {
@@ -70,25 +71,29 @@ li {
     list-style-type: none;
 }
 #form{
+    border-radius: 1vh;
     padding: 1vh;
-    border: 1px solid rgb(65, 44, 3);
+    border: 2px solid rgb(65, 44, 3);
     background-color: rgb(220, 215, 200);
 }
 #rowvideo {
     padding: 1vh 1vh 5vh 1vh;
-    border: 1px solid rgb(65, 44, 3);
+    border: 2px solid rgb(65, 44, 3);
     background-color: rgb(220, 215, 200);
 }
 #ingredients,#instructions {
+    border-radius: 1vh;
     background-color: rgb(220, 215, 200);
     padding: 1vh;
 }
 .row{
     margin: 2vh;
+    border-radius: 1vh;
 }
+
 #rigapreparazione{
     background-color: rgb(220, 215, 200);
-    border: 1px solid rgb(65, 44, 3);
+    border: 2px solid rgb(65, 44, 3);
 }
 footer {
     margin-top: 20%;
@@ -105,13 +110,14 @@ footer a {
     text-justify:auto;
 }
 #copertina {
+    border-radius: 1vh;
     height: 25vw;
     width: auto;
 }
 .recensione {
     margin: 2vh;
     background-color: rgb(250, 245, 235);
-    border: 1px solid rgb(65, 44, 3);  
+    border: 2px solid rgb(65, 44, 3);  
 }
 h4 {
     font-weight: bolder;

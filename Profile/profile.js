@@ -103,6 +103,16 @@ function modificaProfilo() {
     if (username == "") {
         username = utente.username;
     }
+    // fanculo
+    if (users.find(utente => utente.username == username)) {
+        alert("Username già esistente");
+        return;
+    }
+    if (users.find(utente => utente.email == email)) {
+        alert("Email già esistente");
+        return;
+    }
+
     if (email == "") {
         email = utente.email;
     }
